@@ -1,26 +1,55 @@
-﻿Public Class Form1
+﻿Imports System.Data.SqlClient
 
-    Private Sub userIdLabel_Click(sender As System.Object, e As System.EventArgs) Handles userNameLabel.Click
+Public Class Form1
+
+    Private Sub userIdLabel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles userNameLabel.Click
 
     End Sub
 
-    Private Sub Button2_Click(sender As System.Object, e As System.EventArgs) Handles loginBTN.Click
+    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles loginBTN.Click
         'If userNameTB.Text = "Mark" And pwTB.Text = "aa123" Then
-        MainForm.Show()
-        'Else
-        '    MsgBox("Invalid username or password!", MsgBoxStyle.Information, "Error")
 
-        '    userNameTB.Clear()
-        '    pwTB.Clear()
+        ' setup connection to DB
+        Dim connectPath As String = Application.StartupPath.ToString() + "\i-meal.mdf"
+        Dim connectString As String = "Data Source=.\SQLEXPRESS;AttachDbFilename=" + connectPath + ";Integrated Security=True;User Instance=True"
+        Dim connection As New SqlConnection(connectString)
+        Try
+            connection.Open()
+        Catch ex As Exception
+            Print("connection error: " + ex.ToString)
+        End Try
 
+        Dim userName As String = userNameTB.Text
+        Dim userPassword As String = pwTB.Text
 
+        ' setup sql query
+        Dim sqlCommand As SqlCommand = New SqlCommand("SELECT * FROM User_Profile WHERE Name = @name", connection)
+        sqlCommand.Parameters.Add("@name", SqlDbType.VarChar)
+        sqlCommand.Parameters("@name").Value = userName
 
-        'End If
+        Dim dataAdaptor As New SqlDataAdapter
+        dataAdaptor.SelectCommand = sqlCommand
+
+        ' retrieve query feedback
+        Dim cmdBuilder As New SqlCommandBuilder(dataAdaptor)
+        Dim dataTable As New DataTable
+        dataAdaptor.Fill(dataTable)
+
+        ' check if Username and Password exist/match in DB
+        If (dataTable.Rows.Count <> 0) Then
+            Dim dataRow As DataRow = dataTable.Rows(0)
+            If (dataRow("Password").Equals(userPassword)) Then
+                MainForm.Show()
+            Else
+                MsgBox("Invalid username or password!")
+            End If
+        Else
+            MsgBox("Invalid username or password!")
+        End If
 
     End Sub
 
-    Private Sub cancelBTN_Click(sender As System.Object, e As System.EventArgs) Handles cancelBTN.Click
+    Private Sub cancelBTN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cancelBTN.Click
         Me.Close()
-
     End Sub
 End Class
