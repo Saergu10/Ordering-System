@@ -8,7 +8,10 @@ Public Class MainForm
     Dim tax As Decimal
     Dim total As Decimal
 
-    Private myConn As SqlConnection
+    ' DB parameters
+    Dim connection As SqlConnection
+    Dim sqlCommand As SqlCommand
+    Dim dataAdaptor As New SqlDataAdapter
 
     Const MAXITEMSPORDER As Decimal = 30
     Dim currentFoodIDLists(MAXITEMSPORDER) As Integer
@@ -18,20 +21,20 @@ Public Class MainForm
     Private Sub evmBtn_Click(sender As System.Object, e As System.EventArgs) Handles evmBtn.Click
 
         'Create a Command object.
-        'myCmd = myConn.CreateCommand
+        'myCmd = connection.CreateCommand
         Dim myCmd As New SqlCommand("SELECT Food.* FROM Food INNER JOIN " & _
                             "FoodCategory ON Food.Food_Cate_id = FoodCategory.ID " & _
                             "WHERE        (FoodCategory.ID = @id) " & _
-                            "ORDER BY Food.ID", myConn)
+                            "ORDER BY Food.ID", connection)
 
         myCmd.Parameters.Add("@id", SqlDbType.Int).Value = 1
 
         Try
             'Open the connection.
-            myConn.Open()
+            connection.Open()
             'Dim ds As New DataSet
             'Dim adapter As New SqlDataAdapter
-            'adapter.SelectCommand = New SqlCommand("Your SQL Statement Here", myConn)
+            'adapter.SelectCommand = New SqlCommand("Your SQL Statement Here", connection)
             'adapter.Fill(ds)
             Dim sqlReader As SqlDataReader = myCmd.ExecuteReader()
 
@@ -46,7 +49,7 @@ Public Class MainForm
                     lblItem2.Text = sqlReader.Item(1)
                     'RadioButton1.Text = sqlReader.Item(1)
 
-                Else If (count = 1) Then
+                ElseIf (count = 1) Then
 
 
                     picItem2.Image = Image.FromFile(".\images\evmItem2.jpg")
@@ -65,7 +68,7 @@ Public Class MainForm
             MsgBox("Can not open connection ! ")
         Finally
 
-            myConn.Close()
+            connection.Close()
         End Try
 
 
@@ -86,30 +89,30 @@ Public Class MainForm
         lblItem6.Visible = False
         lblItem7.Visible = False
         lblItem8.Visible = False
-        
+
 
     End Sub
 
-    Private Sub vmdBtn_Click(sender As System.Object, e As System.EventArgs) Handles vmdBtn.Click
+    Private Sub vmdBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles vmdBtn.Click
 
         RadioButton1.Checked = False
 
 
         'Create a Command object.
-        'myCmd = myConn.CreateCommand
+        'myCmd = connection.CreateCommand
         Dim myCmd As New SqlCommand("SELECT Food.* FROM Food INNER JOIN " & _
                             "FoodCategory ON Food.Food_Cate_id = FoodCategory.ID " & _
                             "WHERE        (FoodCategory.ID = @id) " & _
-                            "ORDER BY Food.ID", myConn)
+                            "ORDER BY Food.ID", connection)
 
         myCmd.Parameters.Add("@id", SqlDbType.Int).Value = 2
 
         Try
             'Open the connection.
-            myConn.Open()
+            connection.Open()
             'Dim ds As New DataSet
             'Dim adapter As New SqlDataAdapter
-            'adapter.SelectCommand = New SqlCommand("Your SQL Statement Here", myConn)
+            'adapter.SelectCommand = New SqlCommand("Your SQL Statement Here", connection)
             'adapter.Fill(ds)
             Dim sqlReader As SqlDataReader = myCmd.ExecuteReader()
 
@@ -155,7 +158,7 @@ Public Class MainForm
         Catch ex As Exception
             MsgBox("Can not open connection ! ")
         Finally
-            myConn.Close()
+            connection.Close()
         End Try
 
         RadioButton1.Visible = True
@@ -174,29 +177,29 @@ Public Class MainForm
         lblItem6.Visible = True
         lblItem7.Visible = True
         lblItem8.Visible = True
-     
+
 
 
     End Sub
 
 
 
-    Private Sub hmBtn_Click(sender As System.Object, e As System.EventArgs) Handles hmBtn.Click
+    Private Sub hmBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles hmBtn.Click
         'Create a Command object.
-        'myCmd = myConn.CreateCommand
+        'myCmd = connection.CreateCommand
         Dim myCmd As New SqlCommand("SELECT Food.* FROM Food INNER JOIN " & _
                             "FoodCategory ON Food.Food_Cate_id = FoodCategory.ID " & _
                             "WHERE        (FoodCategory.ID = @id) " & _
-                            "ORDER BY Food.ID", myConn)
+                            "ORDER BY Food.ID", connection)
 
         myCmd.Parameters.Add("@id", SqlDbType.Int).Value = 3
 
         Try
             'Open the connection.
-            myConn.Open()
+            connection.Open()
             'Dim ds As New DataSet
             'Dim adapter As New SqlDataAdapter
-            'adapter.SelectCommand = New SqlCommand("Your SQL Statement Here", myConn)
+            'adapter.SelectCommand = New SqlCommand("Your SQL Statement Here", connection)
             'adapter.Fill(ds)
             Dim sqlReader As SqlDataReader = myCmd.ExecuteReader()
 
@@ -217,7 +220,7 @@ Public Class MainForm
                     lblItem3.Text = String.Format("02 ${0.00}", sqlReader.Item(2).ToString())
                     lblItem4.Text = sqlReader.Item(1)
                     'RadioButton2.Text = sqlReader.Item(1)  
-               
+
                 End If
 
                 currentFoodIDLists(count) = sqlReader.Item(0)
@@ -229,9 +232,9 @@ Public Class MainForm
         Catch ex As Exception
             MsgBox("Can not open connection ! ")
         Finally
-            myConn.Close()
+            connection.Close()
         End Try
-        
+
         RadioButton1.Visible = True
         RadioButton2.Visible = True
         RadioButton3.Visible = False
@@ -251,22 +254,22 @@ Public Class MainForm
 
     End Sub
 
-    Private Sub burgerBtn_Click(sender As System.Object, e As System.EventArgs) Handles burgerBtn.Click
+    Private Sub burgerBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles burgerBtn.Click
         'Create a Command object.
-        'myCmd = myConn.CreateCommand
+        'myCmd = connection.CreateCommand
         Dim myCmd As New SqlCommand("SELECT Food.* FROM Food INNER JOIN " & _
                             "FoodCategory ON Food.Food_Cate_id = FoodCategory.ID " & _
                             "WHERE        (FoodCategory.ID = @id) " & _
-                            "ORDER BY Food.ID", myConn)
+                            "ORDER BY Food.ID", connection)
 
         myCmd.Parameters.Add("@id", SqlDbType.Int).Value = 5
 
         Try
             'Open the connection.
-            myConn.Open()
+            connection.Open()
             'Dim ds As New DataSet
             'Dim adapter As New SqlDataAdapter
-            'adapter.SelectCommand = New SqlCommand("Your SQL Statement Here", myConn)
+            'adapter.SelectCommand = New SqlCommand("Your SQL Statement Here", connection)
             'adapter.Fill(ds)
             Dim sqlReader As SqlDataReader = myCmd.ExecuteReader()
 
@@ -312,7 +315,7 @@ Public Class MainForm
         Catch ex As Exception
             MsgBox("Can not open connection ! ")
         Finally
-            myConn.Close()
+            connection.Close()
         End Try
 
 
@@ -334,27 +337,27 @@ Public Class MainForm
         lblItem8.Visible = True
 
 
-      
+
 
 
     End Sub
 
-    Private Sub ffnBtn_Click(sender As System.Object, e As System.EventArgs) Handles ffnBtn.Click
+    Private Sub ffnBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ffnBtn.Click
         'Create a Command object.
-        'myCmd = myConn.CreateCommand
+        'myCmd = connection.CreateCommand
         Dim myCmd As New SqlCommand("SELECT Food.* FROM Food INNER JOIN " & _
                             "FoodCategory ON Food.Food_Cate_id = FoodCategory.ID " & _
                             "WHERE        (FoodCategory.ID = @id) " & _
-                            "ORDER BY Food.ID", myConn)
+                            "ORDER BY Food.ID", connection)
 
         myCmd.Parameters.Add("@id", SqlDbType.Int).Value = 7
 
         Try
             'Open the connection.
-            myConn.Open()
+            connection.Open()
             'Dim ds As New DataSet
             'Dim adapter As New SqlDataAdapter
-            'adapter.SelectCommand = New SqlCommand("Your SQL Statement Here", myConn)
+            'adapter.SelectCommand = New SqlCommand("Your SQL Statement Here", connection)
             'adapter.Fill(ds)
             Dim sqlReader As SqlDataReader = myCmd.ExecuteReader()
 
@@ -400,10 +403,10 @@ Public Class MainForm
         Catch ex As Exception
             MsgBox("Can not open connection ! ")
         Finally
-            myConn.Close()
+            connection.Close()
         End Try
 
-        
+
         RadioButton1.Visible = True
         RadioButton2.Visible = True
         RadioButton3.Visible = True
@@ -424,22 +427,22 @@ Public Class MainForm
 
     End Sub
 
-    Private Sub saladBtn_Click(sender As System.Object, e As System.EventArgs) Handles saladBtn.Click
+    Private Sub saladBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles saladBtn.Click
         'Create a Command object.
-        'myCmd = myConn.CreateCommand
+        'myCmd = connection.CreateCommand
         Dim myCmd As New SqlCommand("SELECT Food.* FROM Food INNER JOIN " & _
                             "FoodCategory ON Food.Food_Cate_id = FoodCategory.ID " & _
                             "WHERE        (FoodCategory.ID = @id) " & _
-                            "ORDER BY Food.ID", myConn)
+                            "ORDER BY Food.ID", connection)
 
         myCmd.Parameters.Add("@id", SqlDbType.Int).Value = 6
 
         Try
             'Open the connection.
-            myConn.Open()
+            connection.Open()
             'Dim ds As New DataSet
             'Dim adapter As New SqlDataAdapter
-            'adapter.SelectCommand = New SqlCommand("Your SQL Statement Here", myConn)
+            'adapter.SelectCommand = New SqlCommand("Your SQL Statement Here", connection)
             'adapter.Fill(ds)
             Dim sqlReader As SqlDataReader = myCmd.ExecuteReader()
 
@@ -464,7 +467,7 @@ Public Class MainForm
         Catch ex As Exception
             MsgBox("Can not open connection ! ")
         Finally
-            myConn.Close()
+            connection.Close()
         End Try
         RadioButton1.Visible = True
         RadioButton2.Visible = False
@@ -483,25 +486,25 @@ Public Class MainForm
         lblItem7.Visible = False
         lblItem8.Visible = False
 
-      
+
     End Sub
 
-    Private Sub beverageBtn_Click(sender As System.Object, e As System.EventArgs) Handles beverageBtn.Click
+    Private Sub beverageBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles beverageBtn.Click
         'Create a Command object.
-        'myCmd = myConn.CreateCommand
+        'myCmd = connection.CreateCommand
         Dim myCmd As New SqlCommand("SELECT Food.* FROM Food INNER JOIN " & _
                             "FoodCategory ON Food.Food_Cate_id = FoodCategory.ID " & _
                             "WHERE        (FoodCategory.ID = @id) " & _
-                            "ORDER BY Food.ID", myConn)
+                            "ORDER BY Food.ID", connection)
 
         myCmd.Parameters.Add("@id", SqlDbType.Int).Value = 4
 
         Try
             'Open the connection.
-            myConn.Open()
+            connection.Open()
             'Dim ds As New DataSet
             'Dim adapter As New SqlDataAdapter
-            'adapter.SelectCommand = New SqlCommand("Your SQL Statement Here", myConn)
+            'adapter.SelectCommand = New SqlCommand("Your SQL Statement Here", connection)
             'adapter.Fill(ds)
             Dim sqlReader As SqlDataReader = myCmd.ExecuteReader()
 
@@ -547,7 +550,7 @@ Public Class MainForm
         Catch ex As Exception
             MsgBox("Can not open connection ! ")
         Finally
-            myConn.Close()
+            connection.Close()
         End Try
         RadioButton1.Visible = True
         RadioButton2.Visible = True
@@ -565,27 +568,27 @@ Public Class MainForm
         lblItem6.Visible = True
         lblItem7.Visible = True
         lblItem8.Visible = True
-    
+
 
 
     End Sub
 
-    Private Sub DessertsBtn_Click_1(sender As System.Object, e As System.EventArgs) Handles DessertsBtn.Click
+    Private Sub DessertsBtn_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DessertsBtn.Click
         'Create a Command object.
-        'myCmd = myConn.CreateCommand
+        'myCmd = connection.CreateCommand
         Dim myCmd As New SqlCommand("SELECT Food.* FROM Food INNER JOIN " & _
                             "FoodCategory ON Food.Food_Cate_id = FoodCategory.ID " & _
                             "WHERE        (FoodCategory.ID = @id) " & _
-                            "ORDER BY Food.ID", myConn)
+                            "ORDER BY Food.ID", connection)
 
         myCmd.Parameters.Add("@id", SqlDbType.Int).Value = 8
 
         Try
             'Open the connection.
-            myConn.Open()
+            connection.Open()
             'Dim ds As New DataSet
             'Dim adapter As New SqlDataAdapter
-            'adapter.SelectCommand = New SqlCommand("Your SQL Statement Here", myConn)
+            'adapter.SelectCommand = New SqlCommand("Your SQL Statement Here", connection)
             'adapter.Fill(ds)
             Dim sqlReader As SqlDataReader = myCmd.ExecuteReader()
 
@@ -631,7 +634,7 @@ Public Class MainForm
         Catch ex As Exception
             MsgBox("Can not open connection ! ")
         Finally
-            myConn.Close()
+            connection.Close()
 
         End Try
         RadioButton1.Visible = True
@@ -650,7 +653,7 @@ Public Class MainForm
         lblItem6.Visible = True
         lblItem7.Visible = True
         lblItem8.Visible = True
-     
+
 
 
 
@@ -660,11 +663,26 @@ Public Class MainForm
 
 
     Private Sub MainForm_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        'Create a Connection object.
-        'myConn = New SqlConnection("Initial Catalog=i-Meal;" & _
-        '        "Data Source=localhost;Integrated Security=SSPI;")
-        myConn = New SqlConnection("Data Source=.\SQLEXPRESS;AttachDbFilename=""C:\Users\student\documents\visual studio 2010\Projects\i-mealApp\i-mealApp\i-meal.mdf"";Integrated Security=True;User Instance=True")
+        Dim connectPath As String = Application.StartupPath.ToString() + "\i-meal.mdf"
+        Dim connectString As String = "Data Source=.\SQLEXPRESS;AttachDbFilename=" + connectPath + ";Integrated Security=True;User Instance=True"
+        connection = New SqlConnection(connectString)
+        Try
+            connection.Open()
+        Catch ex As Exception
+            Print("connection error: " + ex.ToString)
+        End Try
 
+        ' setup sql query
+        'sqlCommand = New SqlCommand("SELECT * FROM User_Profile WHERE Name = @name", connection)
+        'sqlCommand.Parameters.Add("@name", SqlDbType.VarChar)
+        'sqlCommand.Parameters("@name").Value = userName
+
+        'dataAdaptor.SelectCommand = sqlCommand
+
+        ' retrieve query feedback
+        'Dim cmdBuilder As New SqlCommandBuilder(dataAdaptor)
+        'Dim dataTable As New DataTable
+        'dataAdaptor.Fill(dataTable)
 
         picItem1.Image = Image.FromFile(".\images\evmItem1.jpg")
         lblItem1.Text = "01 $8.00"
