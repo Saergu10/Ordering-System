@@ -14,7 +14,8 @@ Public Class MainForm
     ' Panel Arrays
     Dim panelPictureBoxArray() As PictureBox
     Dim panelLableItemArray() As Label
-    Dim panelRadioButtonArray() As RadioButton
+    Dim panelAddButtonArray() As Button
+    Dim panelRemoveButtonArray() As Button
 
     ' Order variables
     Dim customerId As Integer
@@ -80,7 +81,8 @@ Public Class MainForm
             panelLableItemArray((index + 1) * 2 - 1).Text = foodInfo("Name")
 
             panelPictureBoxArray(index).Visible = True
-            panelRadioButtonArray(index).Visible = True
+            panelAddButtonArray(index).Visible = True
+            panelRemoveButtonArray(index).Visible = True
             panelLableItemArray((index + 1) * 2 - 2).Visible = True
             panelLableItemArray((index + 1) * 2 - 1).Visible = True
         Next
@@ -88,27 +90,43 @@ Public Class MainForm
         ' set all unnecessary components to invisible
         For index As Integer = dataTable.Rows.Count To 3
             panelPictureBoxArray(index).Visible = False
-            panelRadioButtonArray(index).Visible = False
+            panelAddButtonArray(index).Visible = False
+            panelRemoveButtonArray(index).Visible = False
             panelLableItemArray((index + 1) * 2 - 2).Visible = False
             panelLableItemArray((index + 1) * 2 - 1).Visible = False
         Next
     End Sub
 
-
-    Private Sub RadioButton1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadioButton1.CheckedChanged
+    Private Sub AddButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AddButton1.Click
         selectFood(0)
     End Sub
 
-    Private Sub RadioButton2_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadioButton2.CheckedChanged
+    Private Sub AddButton2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AddButton2.Click
         selectFood(1)
     End Sub
 
-    Private Sub RadioButton3_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadioButton3.CheckedChanged
+    Private Sub AddButton3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AddButton3.Click
         selectFood(2)
     End Sub
 
-    Private Sub RadioButton4_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadioButton4.CheckedChanged
+    Private Sub AddButton4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AddButton4.Click
         selectFood(3)
+    End Sub
+
+    Private Sub RemoveButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RemoveButton1.Click
+        removeFood(0)
+    End Sub
+
+    Private Sub RemoveButton2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RemoveButton2.Click
+        removeFood(1)
+    End Sub
+
+    Private Sub RemoveButton3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RemoveButton3.Click
+        removeFood(2)
+    End Sub
+
+    Private Sub RemoveButton4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RemoveButton4.Click
+        removeFood(3)
     End Sub
 
     ' helper function
@@ -122,6 +140,24 @@ Public Class MainForm
             orderDataDictionary(foodName) = value + 1
         Else
             orderDataDictionary.Add(foodName, 1)
+        End If
+
+        ' update displayed form
+        updateSummaryTable(foodInfo("Price"))
+    End Sub
+
+    Private Sub removeFood(ByVal index As Integer)
+        Dim foodInfo As DataRow = dataTable.Rows(index)
+        Dim foodName As String = foodInfo("Name")
+
+        ' update orderDataDictionary
+        Dim value As Integer
+        If orderDataDictionary.TryGetValue(foodName, value) Then
+            If value <> 1 Then
+                orderDataDictionary(foodName) = value - 1
+            Else
+                orderDataDictionary.Remove(foodName)
+            End If
         End If
 
         ' update displayed form
@@ -159,7 +195,8 @@ Public Class MainForm
         End Try
 
         panelPictureBoxArray = {picItem1, picItem2, picItem3, picItem4}
-        panelRadioButtonArray = {RadioButton1, RadioButton2, RadioButton3, RadioButton4}
+        panelAddButtonArray = {AddButton1, AddButton2, AddButton3, AddButton4}
+        panelRemoveButtonArray = {RemoveButton1, RemoveButton2, RemoveButton3, RemoveButton4}
         panelLableItemArray = {lblItem1, lblItem2, lblItem3, lblItem4, lblItem5, lblItem6, lblItem7, lblItem8}
 
         summaryLB.ColumnCount = 3

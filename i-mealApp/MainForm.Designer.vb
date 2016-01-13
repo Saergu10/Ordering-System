@@ -45,22 +45,26 @@ Partial Class MainForm
         Me.CustomerLB = New System.Windows.Forms.ListBox()
         Me.PanelMenu = New System.Windows.Forms.Panel()
         Me.Panel5 = New System.Windows.Forms.Panel()
-        Me.RadioButton4 = New System.Windows.Forms.RadioButton()
+        Me.RemoveButton4 = New System.Windows.Forms.Button()
+        Me.AddButton4 = New System.Windows.Forms.Button()
         Me.lblItem8 = New System.Windows.Forms.Label()
         Me.lblItem7 = New System.Windows.Forms.Label()
         Me.picItem4 = New System.Windows.Forms.PictureBox()
         Me.Panel4 = New System.Windows.Forms.Panel()
-        Me.RadioButton3 = New System.Windows.Forms.RadioButton()
         Me.lblItem6 = New System.Windows.Forms.Label()
         Me.lblItem5 = New System.Windows.Forms.Label()
+        Me.RemoveButton3 = New System.Windows.Forms.Button()
+        Me.AddButton3 = New System.Windows.Forms.Button()
         Me.picItem3 = New System.Windows.Forms.PictureBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.lblItem4 = New System.Windows.Forms.Label()
         Me.lblItem3 = New System.Windows.Forms.Label()
         Me.picItem2 = New System.Windows.Forms.PictureBox()
+        Me.RemoveButton2 = New System.Windows.Forms.Button()
+        Me.AddButton2 = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
+        Me.RemoveButton1 = New System.Windows.Forms.Button()
+        Me.AddButton1 = New System.Windows.Forms.Button()
         Me.lblItem2 = New System.Windows.Forms.Label()
         Me.picItem1 = New System.Windows.Forms.PictureBox()
         Me.lblItem1 = New System.Windows.Forms.Label()
@@ -210,19 +214,25 @@ Partial Class MainForm
         '
         'Panel5
         '
-        Me.Panel5.Controls.Add(Me.RadioButton4)
+        Me.Panel5.Controls.Add(Me.RemoveButton4)
+        Me.Panel5.Controls.Add(Me.AddButton4)
         Me.Panel5.Controls.Add(Me.lblItem8)
         Me.Panel5.Controls.Add(Me.lblItem7)
         Me.Panel5.Controls.Add(Me.picItem4)
         resources.ApplyResources(Me.Panel5, "Panel5")
         Me.Panel5.Name = "Panel5"
         '
-        'RadioButton4
+        'RemoveButton4
         '
-        resources.ApplyResources(Me.RadioButton4, "RadioButton4")
-        Me.RadioButton4.Name = "RadioButton4"
-        Me.RadioButton4.TabStop = True
-        Me.RadioButton4.UseVisualStyleBackColor = True
+        resources.ApplyResources(Me.RemoveButton4, "RemoveButton4")
+        Me.RemoveButton4.Name = "RemoveButton4"
+        Me.RemoveButton4.UseVisualStyleBackColor = True
+        '
+        'AddButton4
+        '
+        resources.ApplyResources(Me.AddButton4, "AddButton4")
+        Me.AddButton4.Name = "AddButton4"
+        Me.AddButton4.UseVisualStyleBackColor = True
         '
         'lblItem8
         '
@@ -242,19 +252,13 @@ Partial Class MainForm
         '
         'Panel4
         '
-        Me.Panel4.Controls.Add(Me.RadioButton3)
         Me.Panel4.Controls.Add(Me.lblItem6)
         Me.Panel4.Controls.Add(Me.lblItem5)
+        Me.Panel4.Controls.Add(Me.RemoveButton3)
+        Me.Panel4.Controls.Add(Me.AddButton3)
         Me.Panel4.Controls.Add(Me.picItem3)
         resources.ApplyResources(Me.Panel4, "Panel4")
         Me.Panel4.Name = "Panel4"
-        '
-        'RadioButton3
-        '
-        resources.ApplyResources(Me.RadioButton3, "RadioButton3")
-        Me.RadioButton3.Name = "RadioButton3"
-        Me.RadioButton3.TabStop = True
-        Me.RadioButton3.UseVisualStyleBackColor = True
         '
         'lblItem6
         '
@@ -266,6 +270,18 @@ Partial Class MainForm
         resources.ApplyResources(Me.lblItem5, "lblItem5")
         Me.lblItem5.Name = "lblItem5"
         '
+        'RemoveButton3
+        '
+        resources.ApplyResources(Me.RemoveButton3, "RemoveButton3")
+        Me.RemoveButton3.Name = "RemoveButton3"
+        Me.RemoveButton3.UseVisualStyleBackColor = True
+        '
+        'AddButton3
+        '
+        resources.ApplyResources(Me.AddButton3, "AddButton3")
+        Me.AddButton3.Name = "AddButton3"
+        Me.AddButton3.UseVisualStyleBackColor = True
+        '
         'picItem3
         '
         resources.ApplyResources(Me.picItem3, "picItem3")
@@ -274,19 +290,13 @@ Partial Class MainForm
         '
         'Panel3
         '
-        Me.Panel3.Controls.Add(Me.RadioButton2)
         Me.Panel3.Controls.Add(Me.lblItem4)
         Me.Panel3.Controls.Add(Me.lblItem3)
         Me.Panel3.Controls.Add(Me.picItem2)
+        Me.Panel3.Controls.Add(Me.RemoveButton2)
+        Me.Panel3.Controls.Add(Me.AddButton2)
         resources.ApplyResources(Me.Panel3, "Panel3")
         Me.Panel3.Name = "Panel3"
-        '
-        'RadioButton2
-        '
-        resources.ApplyResources(Me.RadioButton2, "RadioButton2")
-        Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.TabStop = True
-        Me.RadioButton2.UseVisualStyleBackColor = True
         '
         'lblItem4
         '
@@ -304,21 +314,39 @@ Partial Class MainForm
         Me.picItem2.Name = "picItem2"
         Me.picItem2.TabStop = False
         '
+        'RemoveButton2
+        '
+        resources.ApplyResources(Me.RemoveButton2, "RemoveButton2")
+        Me.RemoveButton2.Name = "RemoveButton2"
+        Me.RemoveButton2.UseVisualStyleBackColor = True
+        '
+        'AddButton2
+        '
+        resources.ApplyResources(Me.AddButton2, "AddButton2")
+        Me.AddButton2.Name = "AddButton2"
+        Me.AddButton2.UseVisualStyleBackColor = True
+        '
         'Panel2
         '
-        Me.Panel2.Controls.Add(Me.RadioButton1)
+        Me.Panel2.Controls.Add(Me.RemoveButton1)
+        Me.Panel2.Controls.Add(Me.AddButton1)
         Me.Panel2.Controls.Add(Me.lblItem2)
         Me.Panel2.Controls.Add(Me.picItem1)
         Me.Panel2.Controls.Add(Me.lblItem1)
         resources.ApplyResources(Me.Panel2, "Panel2")
         Me.Panel2.Name = "Panel2"
         '
-        'RadioButton1
+        'RemoveButton1
         '
-        resources.ApplyResources(Me.RadioButton1, "RadioButton1")
-        Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.TabStop = True
-        Me.RadioButton1.UseVisualStyleBackColor = True
+        resources.ApplyResources(Me.RemoveButton1, "RemoveButton1")
+        Me.RemoveButton1.Name = "RemoveButton1"
+        Me.RemoveButton1.UseVisualStyleBackColor = True
+        '
+        'AddButton1
+        '
+        resources.ApplyResources(Me.AddButton1, "AddButton1")
+        Me.AddButton1.Name = "AddButton1"
+        Me.AddButton1.UseVisualStyleBackColor = True
         '
         'lblItem2
         '
@@ -447,10 +475,14 @@ Partial Class MainForm
     Friend WithEvents lblItem6 As System.Windows.Forms.Label
     Friend WithEvents lblItem5 As System.Windows.Forms.Label
     Friend WithEvents picItem3 As System.Windows.Forms.PictureBox
-    Friend WithEvents RadioButton4 As System.Windows.Forms.RadioButton
-    Friend WithEvents RadioButton3 As System.Windows.Forms.RadioButton
-    Friend WithEvents RadioButton2 As System.Windows.Forms.RadioButton
-    Friend WithEvents RadioButton1 As System.Windows.Forms.RadioButton
     Friend WithEvents summaryLB As System.Windows.Forms.DataGridView
     Friend WithEvents totalLB As System.Windows.Forms.DataGridView
+    Friend WithEvents RemoveButton1 As System.Windows.Forms.Button
+    Friend WithEvents AddButton1 As System.Windows.Forms.Button
+    Friend WithEvents RemoveButton4 As System.Windows.Forms.Button
+    Friend WithEvents AddButton4 As System.Windows.Forms.Button
+    Friend WithEvents RemoveButton3 As System.Windows.Forms.Button
+    Friend WithEvents AddButton3 As System.Windows.Forms.Button
+    Friend WithEvents RemoveButton2 As System.Windows.Forms.Button
+    Friend WithEvents AddButton2 As System.Windows.Forms.Button
 End Class
