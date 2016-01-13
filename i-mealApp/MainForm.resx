@@ -6247,30 +6247,6 @@
   <data name="&gt;&gt;DessertsBtn.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
-  <data name="totalLB.ItemHeight" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="totalLB.Location" type="System.Drawing.Point, System.Drawing">
-    <value>587, 358</value>
-  </data>
-  <data name="totalLB.Size" type="System.Drawing.Size, System.Drawing">
-    <value>318, 112</value>
-  </data>
-  <data name="totalLB.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;totalLB.Name" xml:space="preserve">
-    <value>totalLB</value>
-  </data>
-  <data name="&gt;&gt;totalLB.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;totalLB.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;totalLB.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
   <data name="idLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -6299,7 +6275,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;idLabel.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="Btn1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -6326,7 +6302,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;Btn1.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="Btn2.Location" type="System.Drawing.Point, System.Drawing">
     <value>190, 420</value>
@@ -6350,7 +6326,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;Btn2.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="Btn3.Location" type="System.Drawing.Point, System.Drawing">
     <value>191, 449</value>
@@ -6374,10 +6350,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;Btn3.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="enterBtn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>454, 357</value>
+    <value>641, 461</value>
   </data>
   <data name="enterBtn.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 30</value>
@@ -6398,10 +6374,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;enterBtn.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="clearBtn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>454, 398</value>
+    <value>783, 461</value>
   </data>
   <data name="clearBtn.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 30</value>
@@ -6422,10 +6398,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;clearBtn.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="ExitBtn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>454, 434</value>
+    <value>454, 461</value>
   </data>
   <data name="ExitBtn.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 30</value>
@@ -6446,7 +6422,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ExitBtn.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="CustomerLB.ItemHeight" type="System.Int32, mscorlib">
     <value>12</value>
@@ -6470,7 +6446,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;CustomerLB.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="&gt;&gt;Panel5.Name" xml:space="preserve">
     <value>Panel5</value>
@@ -6539,7 +6515,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;PanelMenu.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;RadioButton4.Name" xml:space="preserve">
     <value>RadioButton4</value>
@@ -7253,6 +7229,27 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;summaryLB.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="totalLB.Location" type="System.Drawing.Point, System.Drawing">
+    <value>587, 359</value>
+  </data>
+  <data name="totalLB.Size" type="System.Drawing.Size, System.Drawing">
+    <value>318, 82</value>
+  </data>
+  <data name="totalLB.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="&gt;&gt;totalLB.Name" xml:space="preserve">
+    <value>totalLB</value>
+  </data>
+  <data name="&gt;&gt;totalLB.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;totalLB.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;totalLB.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -7266,9 +7263,6 @@
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>941, 510</value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value> </value>
