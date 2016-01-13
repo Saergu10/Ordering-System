@@ -50,6 +50,7 @@ Public Class Form1
     End Sub
 
     Private Sub cancelBTN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cancelBTN.Click
-        Me.Close()
+        'Me.Close()
+        MainForm.Show()
     End Sub
 End Class
