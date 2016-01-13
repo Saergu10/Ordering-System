@@ -13,15 +13,20 @@ Public Class MainForm
     Dim orderedFoodIDLists(MAXITEMSPORDER) As Integer
     Dim numOrdered As Integer
 
-    ' DB parameters
+    ' DB variables
     Dim connection As SqlConnection
     Dim sqlCommand As SqlCommand
     Dim dataAdaptor As New SqlDataAdapter
+    Dim dataTable As DataTable
 
     ' Panel Arrays
     Dim panelPictureBoxArray() As PictureBox
     Dim panelLableItemArray() As Label
     Dim panelRadioButtonArray() As RadioButton
+
+    ' Order variables
+    Dim customerId As Integer
+    Dim orderDataDictionary As Dictionary(Of String, Integer)
 
     Private Sub evmBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles evmBtn.Click
         DisplayFoodCategory(1)
@@ -51,7 +56,7 @@ Public Class MainForm
         DisplayFoodCategory(7)
     End Sub
 
-    Private Sub DessertsBtn_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DessertsBtn.Click
+    Private Sub DessertsBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DessertsBtn.Click
         DisplayFoodCategory(8)
     End Sub
 
@@ -66,7 +71,7 @@ Public Class MainForm
 
         ' retrieve query feedback
         Dim cmdBuilder As New SqlCommandBuilder(dataAdaptor)
-        Dim dataTable As New DataTable
+        dataTable = New DataTable
         dataAdaptor.Fill(dataTable)
 
         For index As Integer = 0 To (dataTable.Rows.Count - 1)
@@ -92,6 +97,46 @@ Public Class MainForm
         Next
     End Sub
 
+
+    Private Sub RadioButton1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadioButton1.CheckedChanged
+        selectFood(0)
+    End Sub
+
+    Private Sub RadioButton2_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadioButton2.CheckedChanged
+        selectFood(1)
+    End Sub
+
+    Private Sub RadioButton3_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadioButton3.CheckedChanged
+        selectFood(2)
+    End Sub
+
+    Private Sub RadioButton4_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadioButton4.CheckedChanged
+        selectFood(3)
+    End Sub
+
+    ' helper function
+    Private Sub selectFood(ByVal index As Integer)
+        Dim foodInfo As DataRow = dataTable.Rows(index)
+        Dim foodName As String = foodInfo("Name")
+
+        ' update orderDataDictionary
+        Dim value As Integer
+        If orderDataDictionary.TryGetValue(foodName, value) Then
+            orderDataDictionary(foodName) = value + 1
+        Else
+            orderDataDictionary.Add(foodName, 1)
+        End If
+
+        ' update displayed form
+        updateSummaryTable()
+    End Sub
+
+    Private Sub updateSummaryTable()
+        For Each pair In orderDataDictionary
+            summaryLB.Rows.Add(customerId, pair.Value, pair.Key)
+        Next
+    End Sub
+
     ' on load
     Private Sub MainForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim connectPath As String = Application.StartupPath.ToString() + "\i-meal.mdf"
@@ -107,11 +152,18 @@ Public Class MainForm
         panelRadioButtonArray = {RadioButton1, RadioButton2, RadioButton3, RadioButton4}
         panelLableItemArray = {lblItem1, lblItem2, lblItem3, lblItem4, lblItem5, lblItem6, lblItem7, lblItem8}
 
-        DisplayFoodCategory(1)
+        summaryLB.ColumnCount = 3
+        summaryLB.ColumnHeadersVisible = True
+        summaryLB.Columns(0).Name = "Customer"
+        summaryLB.Columns(1).Name = "Qty"
+        summaryLB.Columns(2).Name = "Item Name"
+        summaryLB.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
 
         InitializeVariables()
-        ClearTheReceipt()
 
+        DisplayFoodCategory(1)
+
+        customerId = 1 'hard code temporarily
     End Sub
 
 
@@ -120,16 +172,12 @@ Public Class MainForm
 
 
     Private Sub InitializeVariables()
+        orderDataDictionary = New Dictionary(Of String, Integer)
         subTotal = 0
         tax = 0
         total = 0
     End Sub
 
-    Private Sub ClearTheReceipt()
-        summaryLB.Items.Clear()
-        totalLB.Items.Clear()
-
-    End Sub
     Private Sub updateTotal()
         totalLB.Items.Clear()
         totalLB.Items.Add("SUB TOTAL= " & subTotal.ToString("C"))
@@ -137,63 +185,22 @@ Public Class MainForm
         totalLB.Items.Add("   Tax = " & tax.ToString("C"))
         total = subTotal + tax
         totalLB.Items.Add("   Total = " & total.ToString("C"))
-        summaryLB.Items.Add("-----------------------------")
+        'summaryLB.Items.Add("-----------------------------")
     End Sub
 
-    Private Sub enterBtn_Click(sender As System.Object, e As System.EventArgs) Handles enterBtn.Click
+    Private Sub enterBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles enterBtn.Click
         updateTotal()
-
-
-
     End Sub
 
-    Private Sub ExitBtn_Click(sender As System.Object, e As System.EventArgs) Handles ExitBtn.Click
+    Private Sub exitBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExitBtn.Click
         Me.Close()
     End Sub
 
-    Private Sub clearBtn_Click(sender As System.Object, e As System.EventArgs) Handles clearBtn.Click
+    Private Sub clearBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles clearBtn.Click
         InitializeVariables()
-        ClearTheReceipt()
-
+        'ClearTheReceipt()
     End Sub
 
-    Private Sub RadioButton1_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles RadioButton1.CheckedChanged
-        If RadioButton1.Checked Then
-            'subTotal += BCB
-            'Dim BCBItem As String = BCB.ToString("C") & "  Burrito & Chicken Burger"
-            'summaryLB.Items.Add(BCBItem)
-            orderedFoodIDLists(numOrdered) = currentFoodIDLists(0)
-            numOrdered = numOrdered + 1
-            Dim BCBItem As String = lblItem2.Text + "     " + lblItem1.Text.ToString.Substring(4, 1)
-            summaryLB.Items.Add(BCBItem)
-        End If
-    End Sub
 
-    Private Sub RadioButton2_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles RadioButton2.CheckedChanged
-        If RadioButton2.Checked Then
-            orderedFoodIDLists(numOrdered) = currentFoodIDLists(1)
-            numOrdered = numOrdered + 1
-            Dim FFItem As String = lblItem4.Text + "     " + lblItem3.Text.ToString.Substring(4, 1)
-            summaryLB.Items.Add(FFItem)
-        End If
-
-    End Sub
-
-    Private Sub RadioButton3_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles RadioButton3.CheckedChanged
-        If RadioButton3.Checked Then
-            orderedFoodIDLists(numOrdered) = currentFoodIDLists(1)
-            numOrdered = numOrdered + 1
-            Dim FFItem As String = lblItem6.Text + "     " + lblItem5.Text.ToString.Substring(4, 1)
-            summaryLB.Items.Add(FFItem)
-        End If
-    End Sub
-
-    Private Sub RadioButton4_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles RadioButton4.CheckedChanged
-        If RadioButton4.Checked Then
-            orderedFoodIDLists(numOrdered) = currentFoodIDLists(1)
-            numOrdered = numOrdered + 1
-            Dim FFItem As String = lblItem8.Text + "     " + lblItem7.Text.ToString.Substring(4, 1)
-            summaryLB.Items.Add(FFItem)
-        End If
-    End Sub
+    
 End Class

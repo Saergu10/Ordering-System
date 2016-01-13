@@ -33,59 +33,59 @@ Partial Class Form1
         'userNameLabel
         '
         Me.userNameLabel.AutoSize = True
-        Me.userNameLabel.Location = New System.Drawing.Point(232, 54)
+        Me.userNameLabel.Location = New System.Drawing.Point(232, 50)
         Me.userNameLabel.Name = "userNameLabel"
-        Me.userNameLabel.Size = New System.Drawing.Size(58, 13)
+        Me.userNameLabel.Size = New System.Drawing.Size(59, 12)
         Me.userNameLabel.TabIndex = 0
         Me.userNameLabel.Text = "Username:"
         '
         'userNameTB
         '
-        Me.userNameTB.Location = New System.Drawing.Point(232, 95)
+        Me.userNameTB.Location = New System.Drawing.Point(232, 88)
         Me.userNameTB.Name = "userNameTB"
-        Me.userNameTB.Size = New System.Drawing.Size(225, 20)
+        Me.userNameTB.Size = New System.Drawing.Size(225, 21)
         Me.userNameTB.TabIndex = 1
         '
         'pwLabel
         '
         Me.pwLabel.AutoSize = True
-        Me.pwLabel.Location = New System.Drawing.Point(232, 161)
+        Me.pwLabel.Location = New System.Drawing.Point(232, 149)
         Me.pwLabel.Name = "pwLabel"
-        Me.pwLabel.Size = New System.Drawing.Size(56, 13)
+        Me.pwLabel.Size = New System.Drawing.Size(59, 12)
         Me.pwLabel.TabIndex = 2
         Me.pwLabel.Text = "Password:"
         '
         'pwTB
         '
-        Me.pwTB.Location = New System.Drawing.Point(232, 191)
+        Me.pwTB.Location = New System.Drawing.Point(232, 176)
         Me.pwTB.Name = "pwTB"
         Me.pwTB.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.pwTB.Size = New System.Drawing.Size(225, 20)
+        Me.pwTB.Size = New System.Drawing.Size(225, 21)
         Me.pwTB.TabIndex = 3
         '
         'cancelBTN
         '
-        Me.cancelBTN.Location = New System.Drawing.Point(369, 269)
+        Me.cancelBTN.Location = New System.Drawing.Point(369, 248)
         Me.cancelBTN.Name = "cancelBTN"
-        Me.cancelBTN.Size = New System.Drawing.Size(100, 34)
+        Me.cancelBTN.Size = New System.Drawing.Size(100, 31)
         Me.cancelBTN.TabIndex = 4
         Me.cancelBTN.Text = "Cancel"
         Me.cancelBTN.UseVisualStyleBackColor = True
         '
         'loginBTN
         '
-        Me.loginBTN.Location = New System.Drawing.Point(209, 269)
+        Me.loginBTN.Location = New System.Drawing.Point(209, 248)
         Me.loginBTN.Name = "loginBTN"
-        Me.loginBTN.Size = New System.Drawing.Size(100, 33)
+        Me.loginBTN.Size = New System.Drawing.Size(100, 30)
         Me.loginBTN.TabIndex = 5
         Me.loginBTN.Text = "Login"
         Me.loginBTN.UseVisualStyleBackColor = True
         '
         'Form1
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(863, 426)
+        Me.ClientSize = New System.Drawing.Size(709, 393)
         Me.Controls.Add(Me.loginBTN)
         Me.Controls.Add(Me.cancelBTN)
         Me.Controls.Add(Me.pwTB)

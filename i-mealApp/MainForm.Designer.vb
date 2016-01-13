@@ -35,7 +35,6 @@ Partial Class MainForm
         Me.saladBtn = New System.Windows.Forms.Button()
         Me.beverageBtn = New System.Windows.Forms.Button()
         Me.DessertsBtn = New System.Windows.Forms.Button()
-        Me.summaryLB = New System.Windows.Forms.ListBox()
         Me.totalLB = New System.Windows.Forms.ListBox()
         Me.idLabel = New System.Windows.Forms.Label()
         Me.Btn1 = New System.Windows.Forms.Button()
@@ -66,6 +65,7 @@ Partial Class MainForm
         Me.lblItem2 = New System.Windows.Forms.Label()
         Me.picItem1 = New System.Windows.Forms.PictureBox()
         Me.lblItem1 = New System.Windows.Forms.Label()
+        Me.summaryLB = New System.Windows.Forms.DataGridView()
         CType(Me.mealPic, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelMenu.SuspendLayout()
@@ -77,6 +77,7 @@ Partial Class MainForm
         CType(Me.picItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
         CType(Me.picItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.summaryLB, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'mealLabel
@@ -148,12 +149,6 @@ Partial Class MainForm
         resources.ApplyResources(Me.DessertsBtn, "DessertsBtn")
         Me.DessertsBtn.Name = "DessertsBtn"
         Me.DessertsBtn.UseVisualStyleBackColor = True
-        '
-        'summaryLB
-        '
-        Me.summaryLB.FormattingEnabled = True
-        resources.ApplyResources(Me.summaryLB, "summaryLB")
-        Me.summaryLB.Name = "summaryLB"
         '
         'totalLB
         '
@@ -346,11 +341,23 @@ Partial Class MainForm
         resources.ApplyResources(Me.lblItem1, "lblItem1")
         Me.lblItem1.Name = "lblItem1"
         '
+        'summaryLB
+        '
+        Me.summaryLB.AllowUserToAddRows = False
+        Me.summaryLB.AllowUserToDeleteRows = False
+        Me.summaryLB.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.summaryLB.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.summaryLB.GridColor = System.Drawing.SystemColors.ButtonHighlight
+        resources.ApplyResources(Me.summaryLB, "summaryLB")
+        Me.summaryLB.Name = "summaryLB"
+        Me.summaryLB.RowTemplate.Height = 23
+        '
         'MainForm
         '
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.PowderBlue
+        Me.Controls.Add(Me.summaryLB)
         Me.Controls.Add(Me.PanelMenu)
         Me.Controls.Add(Me.CustomerLB)
         Me.Controls.Add(Me.ExitBtn)
@@ -361,7 +368,6 @@ Partial Class MainForm
         Me.Controls.Add(Me.Btn1)
         Me.Controls.Add(Me.idLabel)
         Me.Controls.Add(Me.totalLB)
-        Me.Controls.Add(Me.summaryLB)
         Me.Controls.Add(Me.DessertsBtn)
         Me.Controls.Add(Me.beverageBtn)
         Me.Controls.Add(Me.saladBtn)
@@ -390,6 +396,7 @@ Partial Class MainForm
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
         CType(Me.picItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.summaryLB, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -406,7 +413,6 @@ Partial Class MainForm
     Friend WithEvents saladBtn As System.Windows.Forms.Button
     Friend WithEvents beverageBtn As System.Windows.Forms.Button
     Friend WithEvents DessertsBtn As System.Windows.Forms.Button
-    Friend WithEvents summaryLB As System.Windows.Forms.ListBox
     Friend WithEvents totalLB As System.Windows.Forms.ListBox
     Friend WithEvents idLabel As System.Windows.Forms.Label
     Friend WithEvents Btn1 As System.Windows.Forms.Button
@@ -437,4 +443,5 @@ Partial Class MainForm
     Friend WithEvents RadioButton3 As System.Windows.Forms.RadioButton
     Friend WithEvents RadioButton2 As System.Windows.Forms.RadioButton
     Friend WithEvents RadioButton1 As System.Windows.Forms.RadioButton
+    Friend WithEvents summaryLB As System.Windows.Forms.DataGridView
 End Class
