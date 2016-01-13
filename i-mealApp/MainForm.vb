@@ -75,6 +75,7 @@ Public Class MainForm
         For index As Integer = 0 To (dataTable.Rows.Count - 1)
             Dim foodInfo As DataRow = dataTable.Rows(index)
 
+            panelPictureBoxArray(index).SizeMode = PictureBoxSizeMode.StretchImage
             panelPictureBoxArray(index).Image = Image.FromFile(".\images\" + foodInfo("ID").ToString + ".jpg")
             Dim displayedIndex As Integer = index + 1
             panelLableItemArray((index + 1) * 2 - 2).Text = "0" + displayedIndex.ToString + " $" + Format(foodInfo("Price"), "0.00").ToString
@@ -143,7 +144,7 @@ Public Class MainForm
         End If
 
         ' update displayed form
-        updateSummaryTable(foodInfo("Price"))
+        updateSummaryTable()
     End Sub
 
     Private Sub removeFood(ByVal index As Integer)
@@ -161,14 +162,14 @@ Public Class MainForm
         End If
 
         ' update displayed form
-        updateSummaryTable(foodInfo("Price"))
+        updateSummaryTable()
     End Sub
 
-    Private Sub updateSummaryTable(ByVal price As Decimal)
+    Private Sub updateSummaryTable()
         summaryLB.Rows.Clear()
         subTotal = 0
         For Each pair In orderDataDictionary
-            subTotal += pair.Value * price
+            subTotal += pair.Value * getFoodPrice(pair.Key)
             summaryLB.Rows.Add(customerId, pair.Value, pair.Key)
         Next
 
@@ -181,6 +182,97 @@ Public Class MainForm
 
         summaryLB.ClearSelection()
         totalLB.ClearSelection()
+    End Sub
+
+    Private Function getFoodPrice(ByVal name)
+        Dim sqlCommand As SqlCommand = New SqlCommand("SELECT * FROM Food WHERE Name = @name", connection)
+        sqlCommand.Parameters.Add("@name", SqlDbType.VarChar)
+        sqlCommand.Parameters("@name").Value = name
+        dataAdaptor.SelectCommand = sqlCommand
+
+        ' retrieve query feedback
+        Dim cmdBuilder As New SqlCommandBuilder(dataAdaptor)
+        Dim dataTable As New DataTable
+        dataAdaptor.Fill(dataTable)
+
+        Return dataTable.Rows(0)("Price")
+    End Function
+
+    Private Function getFoodID(ByVal name)
+        Dim sqlCommand As SqlCommand = New SqlCommand("SELECT * FROM Food WHERE Name = @name", connection)
+        sqlCommand.Parameters.Add("@name", SqlDbType.VarChar)
+        sqlCommand.Parameters("@name").Value = name
+        dataAdaptor.SelectCommand = sqlCommand
+
+        ' retrieve query feedback
+        Dim cmdBuilder As New SqlCommandBuilder(dataAdaptor)
+        Dim dataTable As New DataTable
+        dataAdaptor.Fill(dataTable)
+
+        Return dataTable.Rows(0)("ID")
+    End Function
+
+    Private Sub insertTransaction(ByVal transID As Integer, ByVal foodID As Integer,
+                                  ByVal qty As Integer, ByVal userID As Integer)
+        Dim sqlCommand As SqlCommand = New SqlCommand("INSERT INTO [Transaction](ID, Food_Id, Qty, User_Id) VALUES (@transactionId, @foodId, @qty, @userId)",
+                                                      connection)
+        sqlCommand.Parameters.Add("@transactionId", SqlDbType.Int)
+        sqlCommand.Parameters("@transactionId").Value = transID
+        sqlCommand.Parameters.Add("@foodId", SqlDbType.Int)
+        sqlCommand.Parameters("@foodId").Value = foodID
+        sqlCommand.Parameters.Add("@qty", SqlDbType.Int)
+        sqlCommand.Parameters("@qty").Value = qty
+        sqlCommand.Parameters.Add("@userId", SqlDbType.Int)
+        sqlCommand.Parameters("@userId").Value = userID
+
+        Dim rowsAffected As Integer = sqlCommand.ExecuteNonQuery()
+        MsgBox(rowsAffected.ToString + " rows affected")
+    End Sub
+
+    ' save order info to DB
+    Private Sub orderBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles orderBtn.Click
+        Dim transID As Integer = generateTransactionID()
+
+        ' insert each food item with its quantity into DB -- items from same order will share same transID
+        For Each pair In orderDataDictionary
+            Dim foodID As Integer = getFoodID(pair.Key)
+            insertTransaction(transID, foodID, pair.Value, customerId)
+        Next
+    End Sub
+
+    Private Function generateTransactionID()
+        ' generate transaction ID -- * note: transaction is a reserved keyword
+        Dim sqlCommand As SqlCommand = New SqlCommand("SELECT ID FROM [Transaction] ORDER BY ID DESC", connection)
+        dataAdaptor.SelectCommand = sqlCommand
+
+        ' retrieve query feedback
+        Dim cmdBuilder As New SqlCommandBuilder(dataAdaptor)
+        Dim dataTable As New DataTable
+        dataAdaptor.Fill(dataTable)
+
+        If dataTable.Rows.Count = 0 Then
+            ' let starting ID be 1
+            Return 1
+        Else
+            Return dataTable.Rows(0)("ID") + 1
+        End If
+    End Function
+
+    Private Sub exitBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExitBtn.Click
+        Me.Close()
+    End Sub
+
+    Private Sub clearBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles clearBtn.Click
+        InitializeVariables()
+    End Sub
+
+    Private Sub InitializeVariables()
+        orderDataDictionary = New Dictionary(Of String, Integer)
+        summaryLB.Rows.Clear()
+        totalLB.Rows.Clear()
+        subTotal = 0
+        tax = 0
+        total = 0
     End Sub
 
     ' on load
@@ -223,29 +315,4 @@ Public Class MainForm
 
         customerId = 1 'hard coded temporarily
     End Sub
-
-
-
-
-    Private Sub InitializeVariables()
-        orderDataDictionary = New Dictionary(Of String, Integer)
-        summaryLB.Rows.Clear()
-        totalLB.Rows.Clear()
-        subTotal = 0
-        tax = 0
-        total = 0
-    End Sub
-
-    Private Sub enterBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles enterBtn.Click
-
-    End Sub
-
-    Private Sub exitBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExitBtn.Click
-        Me.Close()
-    End Sub
-
-    Private Sub clearBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles clearBtn.Click
-        InitializeVariables()
-    End Sub
-
 End Class

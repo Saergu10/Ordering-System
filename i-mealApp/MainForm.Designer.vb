@@ -39,7 +39,7 @@ Partial Class MainForm
         Me.Btn1 = New System.Windows.Forms.Button()
         Me.Btn2 = New System.Windows.Forms.Button()
         Me.Btn3 = New System.Windows.Forms.Button()
-        Me.enterBtn = New System.Windows.Forms.Button()
+        Me.orderBtn = New System.Windows.Forms.Button()
         Me.clearBtn = New System.Windows.Forms.Button()
         Me.ExitBtn = New System.Windows.Forms.Button()
         Me.CustomerLB = New System.Windows.Forms.ListBox()
@@ -178,11 +178,11 @@ Partial Class MainForm
         Me.Btn3.Name = "Btn3"
         Me.Btn3.UseVisualStyleBackColor = True
         '
-        'enterBtn
+        'orderBtn
         '
-        resources.ApplyResources(Me.enterBtn, "enterBtn")
-        Me.enterBtn.Name = "enterBtn"
-        Me.enterBtn.UseVisualStyleBackColor = True
+        resources.ApplyResources(Me.orderBtn, "orderBtn")
+        Me.orderBtn.Name = "orderBtn"
+        Me.orderBtn.UseVisualStyleBackColor = True
         '
         'clearBtn
         '
@@ -399,7 +399,7 @@ Partial Class MainForm
         Me.Controls.Add(Me.CustomerLB)
         Me.Controls.Add(Me.ExitBtn)
         Me.Controls.Add(Me.clearBtn)
-        Me.Controls.Add(Me.enterBtn)
+        Me.Controls.Add(Me.orderBtn)
         Me.Controls.Add(Me.Btn3)
         Me.Controls.Add(Me.Btn2)
         Me.Controls.Add(Me.Btn1)
@@ -454,7 +454,7 @@ Partial Class MainForm
     Friend WithEvents Btn1 As System.Windows.Forms.Button
     Friend WithEvents Btn2 As System.Windows.Forms.Button
     Friend WithEvents Btn3 As System.Windows.Forms.Button
-    Friend WithEvents enterBtn As System.Windows.Forms.Button
+    Friend WithEvents orderBtn As System.Windows.Forms.Button
     Friend WithEvents clearBtn As System.Windows.Forms.Button
     Friend WithEvents ExitBtn As System.Windows.Forms.Button
     Friend WithEvents CustomerLB As System.Windows.Forms.ListBox
