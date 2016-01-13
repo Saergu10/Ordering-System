@@ -1,11 +1,6 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class Form1
-
-    Private Sub userIdLabel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles userNameLabel.Click
-
-    End Sub
-
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles loginBTN.Click
         'If userNameTB.Text = "Mark" And pwTB.Text = "aa123" Then
 
@@ -50,7 +45,6 @@ Public Class Form1
     End Sub
 
     Private Sub cancelBTN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cancelBTN.Click
-        'Me.Close()
-        MainForm.Show()
+        Me.Close()
     End Sub
 End Class

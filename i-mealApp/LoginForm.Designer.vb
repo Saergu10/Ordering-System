@@ -33,7 +33,7 @@ Partial Class Form1
         'userNameLabel
         '
         Me.userNameLabel.AutoSize = True
-        Me.userNameLabel.Location = New System.Drawing.Point(232, 50)
+        Me.userNameLabel.Location = New System.Drawing.Point(230, 60)
         Me.userNameLabel.Name = "userNameLabel"
         Me.userNameLabel.Size = New System.Drawing.Size(59, 12)
         Me.userNameLabel.TabIndex = 0
