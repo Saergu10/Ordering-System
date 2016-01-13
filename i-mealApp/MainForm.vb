@@ -1,10 +1,6 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class MainForm
-
-    Const MAXITEMSPORDER As Decimal = 30
-    Dim numOrdered As Integer
-
     ' DB variables
     Dim connection As SqlConnection
     Dim sqlCommand As SqlCommand
@@ -58,7 +54,6 @@ Public Class MainForm
         DisplayFoodCategory(8)
     End Sub
 
-    ' helper function
     Private Sub DisplayFoodCategory(ByVal categoryID As Integer)
         ' setup sql query
         sqlCommand = New SqlCommand("SELECT * FROM Food WHERE Food_Cate_id = @id", connection)
@@ -98,6 +93,7 @@ Public Class MainForm
         Next
     End Sub
 
+
     Private Sub AddButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AddButton1.Click
         selectFood(0)
     End Sub
@@ -114,23 +110,6 @@ Public Class MainForm
         selectFood(3)
     End Sub
 
-    Private Sub RemoveButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RemoveButton1.Click
-        removeFood(0)
-    End Sub
-
-    Private Sub RemoveButton2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RemoveButton2.Click
-        removeFood(1)
-    End Sub
-
-    Private Sub RemoveButton3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RemoveButton3.Click
-        removeFood(2)
-    End Sub
-
-    Private Sub RemoveButton4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RemoveButton4.Click
-        removeFood(3)
-    End Sub
-
-    ' helper function
     Private Sub selectFood(ByVal index As Integer)
         Dim foodInfo As DataRow = dataTable.Rows(index)
         Dim foodName As String = foodInfo("Name")
@@ -145,6 +124,22 @@ Public Class MainForm
 
         ' update displayed form
         updateSummaryTable()
+    End Sub
+
+    Private Sub RemoveButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RemoveButton1.Click
+        removeFood(0)
+    End Sub
+
+    Private Sub RemoveButton2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RemoveButton2.Click
+        removeFood(1)
+    End Sub
+
+    Private Sub RemoveButton3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RemoveButton3.Click
+        removeFood(2)
+    End Sub
+
+    Private Sub RemoveButton4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RemoveButton4.Click
+        removeFood(3)
     End Sub
 
     Private Sub removeFood(ByVal index As Integer)
@@ -212,34 +207,11 @@ Public Class MainForm
         Return dataTable.Rows(0)("ID")
     End Function
 
-    Private Sub insertTransaction(ByVal transID As Integer, ByVal userID As Integer)
-        Dim sqlCommand As SqlCommand = New SqlCommand("INSERT INTO [Transaction](ID, User_Id) VALUES (@transactionId, @userId)",
-                                                      connection)
-        sqlCommand.Parameters.Add("@transactionId", SqlDbType.Int)
-        sqlCommand.Parameters("@transactionId").Value = transID
-        sqlCommand.Parameters.Add("@userId", SqlDbType.Int)
-        sqlCommand.Parameters("@userId").Value = userID
-
-        Dim rowsAffected As Integer = sqlCommand.ExecuteNonQuery()
-    End Sub
-
-    Private Sub insertTransactionOrder(ByVal transID As Integer, ByVal foodID As Integer, ByVal qty As Integer)
-        Dim sqlCommand As SqlCommand = New SqlCommand("INSERT INTO TransactionOrder(Transaction_Id, Food_Id, Qty) VALUES (@transactionId, @foodId, @qty)",
-                                                      connection)
-        sqlCommand.Parameters.Add("@transactionId", SqlDbType.Int)
-        sqlCommand.Parameters("@transactionId").Value = transID
-        sqlCommand.Parameters.Add("@foodId", SqlDbType.Int)
-        sqlCommand.Parameters("@foodId").Value = foodID
-        sqlCommand.Parameters.Add("@qty", SqlDbType.Int)
-        sqlCommand.Parameters("@qty").Value = qty
-
-        Dim rowsAffected As Integer = sqlCommand.ExecuteNonQuery()
-    End Sub
 
     ' save order info to DB
     Private Sub orderBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles orderBtn.Click
         Dim transID As Integer = generateTransactionID()
-        insertTransaction(transID, customerId)
+        insertTransaction(transID, customerId, total)
 
         ' update transaction order table
         For Each pair In orderDataDictionary
@@ -247,7 +219,8 @@ Public Class MainForm
             insertTransactionOrder(transID, foodID, pair.Value)
         Next
 
-        ' update transaction order table in UI
+        ' update transaction table in UI
+        updateTransactionTable()
 
         InitializeVariables()
     End Sub
@@ -270,9 +243,48 @@ Public Class MainForm
         End If
     End Function
 
-    Private Sub exitBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Me.Close()
+    Private Sub insertTransaction(ByVal transID As Integer, ByVal userID As Integer, ByVal price As Decimal)
+        Dim sqlCommand As SqlCommand = New SqlCommand("INSERT INTO [Transaction](ID, User_Id, price) VALUES (@transactionId, @userId, @price)",
+                                                      connection)
+        sqlCommand.Parameters.Add("@transactionId", SqlDbType.Int)
+        sqlCommand.Parameters("@transactionId").Value = transID
+        sqlCommand.Parameters.Add("@userId", SqlDbType.Int)
+        sqlCommand.Parameters("@userId").Value = userID
+        sqlCommand.Parameters.Add("@price", SqlDbType.Decimal)
+        sqlCommand.Parameters("@price").Value = price
+
+        Dim rowsAffected As Integer = sqlCommand.ExecuteNonQuery()
     End Sub
+
+    Private Sub insertTransactionOrder(ByVal transID As Integer, ByVal foodID As Integer, ByVal qty As Integer)
+        Dim sqlCommand As SqlCommand = New SqlCommand("INSERT INTO TransactionOrder(Transaction_Id, Food_Id, Qty) VALUES (@transactionId, @foodId, @qty)",
+                                                      connection)
+        sqlCommand.Parameters.Add("@transactionId", SqlDbType.Int)
+        sqlCommand.Parameters("@transactionId").Value = transID
+        sqlCommand.Parameters.Add("@foodId", SqlDbType.Int)
+        sqlCommand.Parameters("@foodId").Value = foodID
+        sqlCommand.Parameters.Add("@qty", SqlDbType.Int)
+        sqlCommand.Parameters("@qty").Value = qty
+
+        Dim rowsAffected As Integer = sqlCommand.ExecuteNonQuery()
+    End Sub
+
+    Private Sub updateTransactionTable()
+        transactionOrderTable.Rows.Clear()
+        Dim sqlCommand As SqlCommand = New SqlCommand("SELECT * FROM [Transaction]", connection)
+        dataAdaptor.SelectCommand = sqlCommand
+
+        ' retrieve query feedback
+        Dim cmdBuilder As New SqlCommandBuilder(dataAdaptor)
+        Dim dataTable As New DataTable
+        dataAdaptor.Fill(dataTable)
+
+        For index As Integer = 1 To dataTable.Rows.Count
+            Dim transactionInfo = dataTable.Rows(index - 1)
+            transactionOrderTable.Rows.Add(transactionInfo("ID"), transactionInfo("User_Id"), transactionInfo("Price"))
+        Next
+    End Sub
+
 
     Private Sub clearBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles clearBtn.Click
         InitializeVariables()
@@ -287,17 +299,6 @@ Public Class MainForm
         total = 0
     End Sub
 
-    Private Sub showOrderButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Dim sqlCommand As SqlCommand = New SqlCommand("SELECT * FROM [Transaction]", connection)
-        dataAdaptor.SelectCommand = sqlCommand
-
-        ' retrieve query feedback
-        Dim cmdBuilder As New SqlCommandBuilder(dataAdaptor)
-        Dim dataTable As New DataTable
-        dataAdaptor.Fill(dataTable)
-
-        MsgBox(dataTable.Rows.Count)
-    End Sub
 
     ' on load
     Private Sub MainForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
