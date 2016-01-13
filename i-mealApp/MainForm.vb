@@ -212,9 +212,19 @@ Public Class MainForm
         Return dataTable.Rows(0)("ID")
     End Function
 
-    Private Sub insertTransaction(ByVal transID As Integer, ByVal foodID As Integer,
-                                  ByVal qty As Integer, ByVal userID As Integer)
-        Dim sqlCommand As SqlCommand = New SqlCommand("INSERT INTO [Transaction](ID, Food_Id, Qty, User_Id) VALUES (@transactionId, @foodId, @qty, @userId)",
+    Private Sub insertTransaction(ByVal transID As Integer, ByVal userID As Integer)
+        Dim sqlCommand As SqlCommand = New SqlCommand("INSERT INTO [Transaction](ID, User_Id) VALUES (@transactionId, @userId)",
+                                                      connection)
+        sqlCommand.Parameters.Add("@transactionId", SqlDbType.Int)
+        sqlCommand.Parameters("@transactionId").Value = transID
+        sqlCommand.Parameters.Add("@userId", SqlDbType.Int)
+        sqlCommand.Parameters("@userId").Value = userID
+
+        Dim rowsAffected As Integer = sqlCommand.ExecuteNonQuery()
+    End Sub
+
+    Private Sub insertTransactionOrder(ByVal transID As Integer, ByVal foodID As Integer, ByVal qty As Integer)
+        Dim sqlCommand As SqlCommand = New SqlCommand("INSERT INTO TransactionOrder(Transaction_Id, Food_Id, Qty) VALUES (@transactionId, @foodId, @qty)",
                                                       connection)
         sqlCommand.Parameters.Add("@transactionId", SqlDbType.Int)
         sqlCommand.Parameters("@transactionId").Value = transID
@@ -222,22 +232,24 @@ Public Class MainForm
         sqlCommand.Parameters("@foodId").Value = foodID
         sqlCommand.Parameters.Add("@qty", SqlDbType.Int)
         sqlCommand.Parameters("@qty").Value = qty
-        sqlCommand.Parameters.Add("@userId", SqlDbType.Int)
-        sqlCommand.Parameters("@userId").Value = userID
 
         Dim rowsAffected As Integer = sqlCommand.ExecuteNonQuery()
-        MsgBox(rowsAffected.ToString + " rows affected")
     End Sub
 
     ' save order info to DB
     Private Sub orderBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles orderBtn.Click
         Dim transID As Integer = generateTransactionID()
+        insertTransaction(transID, customerId)
 
-        ' insert each food item with its quantity into DB -- items from same order will share same transID
+        ' update transaction order table
         For Each pair In orderDataDictionary
             Dim foodID As Integer = getFoodID(pair.Key)
-            insertTransaction(transID, foodID, pair.Value, customerId)
+            insertTransactionOrder(transID, foodID, pair.Value)
         Next
+
+        ' update transaction order table in UI
+
+        InitializeVariables()
     End Sub
 
     Private Function generateTransactionID()
@@ -258,7 +270,7 @@ Public Class MainForm
         End If
     End Function
 
-    Private Sub exitBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExitBtn.Click
+    Private Sub exitBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Me.Close()
     End Sub
 
@@ -273,6 +285,18 @@ Public Class MainForm
         subTotal = 0
         tax = 0
         total = 0
+    End Sub
+
+    Private Sub showOrderButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        Dim sqlCommand As SqlCommand = New SqlCommand("SELECT * FROM [Transaction]", connection)
+        dataAdaptor.SelectCommand = sqlCommand
+
+        ' retrieve query feedback
+        Dim cmdBuilder As New SqlCommandBuilder(dataAdaptor)
+        Dim dataTable As New DataTable
+        dataAdaptor.Fill(dataTable)
+
+        MsgBox(dataTable.Rows.Count)
     End Sub
 
     ' on load
@@ -307,7 +331,15 @@ Public Class MainForm
         totalLB.RowHeadersVisible = False
         totalLB.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         totalLB.Columns(0).Name = "PriceName"
-        totalLB.Columns(0).Name = "PriceValue"
+        totalLB.Columns(1).Name = "PriceValue"
+
+        transactionOrderTable.ColumnCount = 3
+        transactionOrderTable.ColumnHeadersVisible = True
+        transactionOrderTable.RowHeadersVisible = False
+        transactionOrderTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        transactionOrderTable.Columns(0).Name = "Transaction ID"
+        transactionOrderTable.Columns(1).Name = "Customer"
+        transactionOrderTable.Columns(2).Name = "Price"
 
         InitializeVariables()
 

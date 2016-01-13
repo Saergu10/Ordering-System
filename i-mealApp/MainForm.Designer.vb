@@ -35,14 +35,8 @@ Partial Class MainForm
         Me.saladBtn = New System.Windows.Forms.Button()
         Me.beverageBtn = New System.Windows.Forms.Button()
         Me.DessertsBtn = New System.Windows.Forms.Button()
-        Me.idLabel = New System.Windows.Forms.Label()
-        Me.Btn1 = New System.Windows.Forms.Button()
-        Me.Btn2 = New System.Windows.Forms.Button()
-        Me.Btn3 = New System.Windows.Forms.Button()
         Me.orderBtn = New System.Windows.Forms.Button()
         Me.clearBtn = New System.Windows.Forms.Button()
-        Me.ExitBtn = New System.Windows.Forms.Button()
-        Me.CustomerLB = New System.Windows.Forms.ListBox()
         Me.PanelMenu = New System.Windows.Forms.Panel()
         Me.Panel5 = New System.Windows.Forms.Panel()
         Me.RemoveButton4 = New System.Windows.Forms.Button()
@@ -70,6 +64,7 @@ Partial Class MainForm
         Me.lblItem1 = New System.Windows.Forms.Label()
         Me.summaryLB = New System.Windows.Forms.DataGridView()
         Me.totalLB = New System.Windows.Forms.DataGridView()
+        Me.transactionOrderTable = New System.Windows.Forms.DataGridView()
         CType(Me.mealPic, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelMenu.SuspendLayout()
@@ -83,6 +78,7 @@ Partial Class MainForm
         CType(Me.picItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.summaryLB, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.totalLB, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.transactionOrderTable, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'mealLabel
@@ -155,29 +151,6 @@ Partial Class MainForm
         Me.DessertsBtn.Name = "DessertsBtn"
         Me.DessertsBtn.UseVisualStyleBackColor = True
         '
-        'idLabel
-        '
-        resources.ApplyResources(Me.idLabel, "idLabel")
-        Me.idLabel.Name = "idLabel"
-        '
-        'Btn1
-        '
-        resources.ApplyResources(Me.Btn1, "Btn1")
-        Me.Btn1.Name = "Btn1"
-        Me.Btn1.UseVisualStyleBackColor = True
-        '
-        'Btn2
-        '
-        resources.ApplyResources(Me.Btn2, "Btn2")
-        Me.Btn2.Name = "Btn2"
-        Me.Btn2.UseVisualStyleBackColor = True
-        '
-        'Btn3
-        '
-        resources.ApplyResources(Me.Btn3, "Btn3")
-        Me.Btn3.Name = "Btn3"
-        Me.Btn3.UseVisualStyleBackColor = True
-        '
         'orderBtn
         '
         resources.ApplyResources(Me.orderBtn, "orderBtn")
@@ -189,18 +162,6 @@ Partial Class MainForm
         resources.ApplyResources(Me.clearBtn, "clearBtn")
         Me.clearBtn.Name = "clearBtn"
         Me.clearBtn.UseVisualStyleBackColor = True
-        '
-        'ExitBtn
-        '
-        resources.ApplyResources(Me.ExitBtn, "ExitBtn")
-        Me.ExitBtn.Name = "ExitBtn"
-        Me.ExitBtn.UseVisualStyleBackColor = True
-        '
-        'CustomerLB
-        '
-        Me.CustomerLB.FormattingEnabled = True
-        resources.ApplyResources(Me.CustomerLB, "CustomerLB")
-        Me.CustomerLB.Name = "CustomerLB"
         '
         'PanelMenu
         '
@@ -388,22 +349,29 @@ Partial Class MainForm
         Me.totalLB.Name = "totalLB"
         Me.totalLB.RowTemplate.Height = 23
         '
+        'transactionOrderTable
+        '
+        Me.transactionOrderTable.AllowUserToAddRows = False
+        Me.transactionOrderTable.AllowUserToDeleteRows = False
+        Me.transactionOrderTable.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.transactionOrderTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.transactionOrderTable.GridColor = System.Drawing.SystemColors.ButtonHighlight
+        resources.ApplyResources(Me.transactionOrderTable, "transactionOrderTable")
+        Me.transactionOrderTable.Name = "transactionOrderTable"
+        Me.transactionOrderTable.ReadOnly = True
+        Me.transactionOrderTable.RowTemplate.Height = 23
+        '
         'MainForm
         '
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.PowderBlue
+        Me.Controls.Add(Me.transactionOrderTable)
         Me.Controls.Add(Me.totalLB)
         Me.Controls.Add(Me.summaryLB)
         Me.Controls.Add(Me.PanelMenu)
-        Me.Controls.Add(Me.CustomerLB)
-        Me.Controls.Add(Me.ExitBtn)
         Me.Controls.Add(Me.clearBtn)
         Me.Controls.Add(Me.orderBtn)
-        Me.Controls.Add(Me.Btn3)
-        Me.Controls.Add(Me.Btn2)
-        Me.Controls.Add(Me.Btn1)
-        Me.Controls.Add(Me.idLabel)
         Me.Controls.Add(Me.DessertsBtn)
         Me.Controls.Add(Me.beverageBtn)
         Me.Controls.Add(Me.saladBtn)
@@ -434,6 +402,7 @@ Partial Class MainForm
         CType(Me.picItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.summaryLB, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.totalLB, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.transactionOrderTable, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -450,14 +419,8 @@ Partial Class MainForm
     Friend WithEvents saladBtn As System.Windows.Forms.Button
     Friend WithEvents beverageBtn As System.Windows.Forms.Button
     Friend WithEvents DessertsBtn As System.Windows.Forms.Button
-    Friend WithEvents idLabel As System.Windows.Forms.Label
-    Friend WithEvents Btn1 As System.Windows.Forms.Button
-    Friend WithEvents Btn2 As System.Windows.Forms.Button
-    Friend WithEvents Btn3 As System.Windows.Forms.Button
     Friend WithEvents orderBtn As System.Windows.Forms.Button
     Friend WithEvents clearBtn As System.Windows.Forms.Button
-    Friend WithEvents ExitBtn As System.Windows.Forms.Button
-    Friend WithEvents CustomerLB As System.Windows.Forms.ListBox
     Friend WithEvents PanelMenu As System.Windows.Forms.Panel
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
     Friend WithEvents lblItem1 As System.Windows.Forms.Label
@@ -485,4 +448,5 @@ Partial Class MainForm
     Friend WithEvents AddButton3 As System.Windows.Forms.Button
     Friend WithEvents RemoveButton2 As System.Windows.Forms.Button
     Friend WithEvents AddButton2 As System.Windows.Forms.Button
+    Friend WithEvents transactionOrderTable As System.Windows.Forms.DataGridView
 End Class

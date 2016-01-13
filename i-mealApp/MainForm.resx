@@ -147,7 +147,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mealLabel.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>17</value>
   </data>
   <data name="mealPic.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2464,7 +2464,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mealPic.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>16</value>
   </data>
   <data name="evmBtn.Location" type="System.Drawing.Point, System.Drawing">
     <value>34, 92</value>
@@ -2488,7 +2488,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;evmBtn.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>15</value>
   </data>
   <data name="vmdBtn.Location" type="System.Drawing.Point, System.Drawing">
     <value>34, 136</value>
@@ -2512,7 +2512,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;vmdBtn.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>14</value>
   </data>
   <data name="hmBtn.Location" type="System.Drawing.Point, System.Drawing">
     <value>34, 177</value>
@@ -2536,7 +2536,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;hmBtn.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>13</value>
   </data>
   <data name="Label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2566,7 +2566,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;Label1.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>12</value>
   </data>
   <data name="PictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -6125,7 +6125,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;PictureBox1.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>11</value>
   </data>
   <data name="burgerBtn.Location" type="System.Drawing.Point, System.Drawing">
     <value>34, 304</value>
@@ -6149,7 +6149,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;burgerBtn.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>10</value>
   </data>
   <data name="ffnBtn.Location" type="System.Drawing.Point, System.Drawing">
     <value>34, 344</value>
@@ -6173,7 +6173,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ffnBtn.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>9</value>
   </data>
   <data name="saladBtn.Location" type="System.Drawing.Point, System.Drawing">
     <value>34, 383</value>
@@ -6197,7 +6197,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;saladBtn.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>8</value>
   </data>
   <data name="beverageBtn.Location" type="System.Drawing.Point, System.Drawing">
     <value>34, 422</value>
@@ -6221,7 +6221,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;beverageBtn.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>7</value>
   </data>
   <data name="DessertsBtn.Location" type="System.Drawing.Point, System.Drawing">
     <value>34, 461</value>
@@ -6245,112 +6245,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;DessertsBtn.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="idLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="idLabel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 11.25pt</value>
-  </data>
-  <data name="idLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>183, 349</value>
-  </data>
-  <data name="idLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 18</value>
-  </data>
-  <data name="idLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="idLabel.Text" xml:space="preserve">
-    <value>Customer ID:</value>
-  </data>
-  <data name="&gt;&gt;idLabel.Name" xml:space="preserve">
-    <value>idLabel</value>
-  </data>
-  <data name="&gt;&gt;idLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;idLabel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;idLabel.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="Btn1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="Btn1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>189, 388</value>
-  </data>
-  <data name="Btn1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 21</value>
-  </data>
-  <data name="Btn1.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="Btn1.Text" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;Btn1.Name" xml:space="preserve">
-    <value>Btn1</value>
-  </data>
-  <data name="&gt;&gt;Btn1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Btn1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;Btn1.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="Btn2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>190, 420</value>
-  </data>
-  <data name="Btn2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 21</value>
-  </data>
-  <data name="Btn2.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="Btn2.Text" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;Btn2.Name" xml:space="preserve">
-    <value>Btn2</value>
-  </data>
-  <data name="&gt;&gt;Btn2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Btn2.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;Btn2.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="Btn3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>191, 449</value>
-  </data>
-  <data name="Btn3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 21</value>
-  </data>
-  <data name="Btn3.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="Btn3.Text" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;Btn3.Name" xml:space="preserve">
-    <value>Btn3</value>
-  </data>
-  <data name="&gt;&gt;Btn3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Btn3.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;Btn3.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>6</value>
   </data>
   <data name="orderBtn.Location" type="System.Drawing.Point, System.Drawing">
     <value>641, 461</value>
@@ -6374,7 +6269,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;orderBtn.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="clearBtn.Location" type="System.Drawing.Point, System.Drawing">
     <value>783, 461</value>
@@ -6398,55 +6293,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;clearBtn.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="ExitBtn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>454, 461</value>
-  </data>
-  <data name="ExitBtn.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 30</value>
-  </data>
-  <data name="ExitBtn.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="ExitBtn.Text" xml:space="preserve">
-    <value>E&amp;xit</value>
-  </data>
-  <data name="&gt;&gt;ExitBtn.Name" xml:space="preserve">
-    <value>ExitBtn</value>
-  </data>
-  <data name="&gt;&gt;ExitBtn.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ExitBtn.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;ExitBtn.ZOrder" xml:space="preserve">
     <value>4</value>
-  </data>
-  <data name="CustomerLB.ItemHeight" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="CustomerLB.Location" type="System.Drawing.Point, System.Drawing">
-    <value>302, 382</value>
-  </data>
-  <data name="CustomerLB.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 88</value>
-  </data>
-  <data name="CustomerLB.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
-  </data>
-  <data name="&gt;&gt;CustomerLB.Name" xml:space="preserve">
-    <value>CustomerLB</value>
-  </data>
-  <data name="&gt;&gt;CustomerLB.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;CustomerLB.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;CustomerLB.ZOrder" xml:space="preserve">
-    <value>3</value>
   </data>
   <data name="&gt;&gt;Panel5.Name" xml:space="preserve">
     <value>Panel5</value>
@@ -6515,7 +6362,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;PanelMenu.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="&gt;&gt;RemoveButton4.Name" xml:space="preserve">
     <value>RemoveButton4</value>
@@ -7391,7 +7238,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;summaryLB.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="totalLB.Location" type="System.Drawing.Point, System.Drawing">
     <value>587, 359</value>
@@ -7412,6 +7259,27 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;totalLB.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="transactionOrderTable.Location" type="System.Drawing.Point, System.Drawing">
+    <value>171, 357</value>
+  </data>
+  <data name="transactionOrderTable.Size" type="System.Drawing.Size, System.Drawing">
+    <value>390, 136</value>
+  </data>
+  <data name="transactionOrderTable.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="&gt;&gt;transactionOrderTable.Name" xml:space="preserve">
+    <value>transactionOrderTable</value>
+  </data>
+  <data name="&gt;&gt;transactionOrderTable.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;transactionOrderTable.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;transactionOrderTable.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -7425,9 +7293,6 @@
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>941, 510</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value> </value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>
