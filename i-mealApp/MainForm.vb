@@ -142,6 +142,9 @@ Public Class MainForm
         totalLB.Rows.Add("SubTotal: ", subTotal)
         totalLB.Rows.Add("GST: ", tax)
         totalLB.Rows.Add("Total: ", total)
+
+        summaryLB.ClearSelection()
+        totalLB.ClearSelection()
     End Sub
 
     ' on load
