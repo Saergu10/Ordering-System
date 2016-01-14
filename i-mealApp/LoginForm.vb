@@ -1,6 +1,12 @@
 ﻿Imports System.Data.SqlClient
 
 Public Class Form1
+    Private userID As Integer
+
+    Public Function getUserID()
+        Return userID
+    End Function
+
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles loginBTN.Click
         ' setup connection to DB
         Dim connectPath As String = Application.StartupPath.ToString() + "\i-meal.mdf"
@@ -32,6 +38,7 @@ Public Class Form1
         If (dataTable.Rows.Count <> 0) Then
             Dim dataRow As DataRow = dataTable.Rows(0)
             If (dataRow("Password").Equals(userPassword)) Then
+                userID = dataRow("Role_Id")
                 MainForm.Show()
             Else
                 MsgBox("Invalid username or password!")

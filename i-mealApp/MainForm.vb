@@ -319,7 +319,7 @@ Public Class MainForm
         summaryLB.ColumnHeadersVisible = True
         summaryLB.RowHeadersVisible = False
         summaryLB.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-        summaryLB.Columns(0).Name = "Customer"
+        summaryLB.Columns(0).Name = "User ID"
         summaryLB.Columns(0).FillWeight = 60
         summaryLB.Columns(1).Name = "Qty"
         summaryLB.Columns(1).FillWeight = 50
@@ -336,13 +336,14 @@ Public Class MainForm
         transactionOrderTable.RowHeadersVisible = False
         transactionOrderTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         transactionOrderTable.Columns(0).Name = "Transaction ID"
-        transactionOrderTable.Columns(1).Name = "Customer"
+        transactionOrderTable.Columns(1).Name = "User ID"
         transactionOrderTable.Columns(2).Name = "Price"
 
         InitializeVariables()
 
         DisplayFoodCategory(1)
 
-        customerId = 1 'hard coded temporarily
+        ' retrieve userID from login page
+        customerId = Form1.getUserID
     End Sub
 End Class
