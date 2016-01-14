@@ -15,7 +15,7 @@ Public Class MainForm
 
     ' Order variables
     Dim customerId As Integer
-    Dim orderDataDictionary As Dictionary(Of String, Integer)
+    Dim orderDataDictionary As Dictionary(Of Integer, Integer)
 
     Const Tax_Rate = 0.07
     Dim subTotal As Decimal
@@ -112,14 +112,14 @@ Public Class MainForm
 
     Private Sub selectFood(ByVal index As Integer)
         Dim foodInfo As DataRow = dataTable.Rows(index)
-        Dim foodName As String = foodInfo("Name")
+        Dim foodId As Integer = foodInfo("ID")
 
         ' update orderDataDictionary
         Dim value As Integer
-        If orderDataDictionary.TryGetValue(foodName, value) Then
-            orderDataDictionary(foodName) = value + 1
+        If orderDataDictionary.TryGetValue(foodId, value) Then
+            orderDataDictionary(foodId) = value + 1
         Else
-            orderDataDictionary.Add(foodName, 1)
+            orderDataDictionary.Add(foodId, 1)
         End If
 
         ' update displayed form
@@ -144,15 +144,15 @@ Public Class MainForm
 
     Private Sub removeFood(ByVal index As Integer)
         Dim foodInfo As DataRow = dataTable.Rows(index)
-        Dim foodName As String = foodInfo("Name")
+        Dim foodId As Integer = foodInfo("ID")
 
         ' update orderDataDictionary
         Dim value As Integer
-        If orderDataDictionary.TryGetValue(foodName, value) Then
+        If orderDataDictionary.TryGetValue(foodId, value) Then
             If value <> 1 Then
-                orderDataDictionary(foodName) = value - 1
+                orderDataDictionary(foodId) = value - 1
             Else
-                orderDataDictionary.Remove(foodName)
+                orderDataDictionary.Remove(foodId)
             End If
         End If
 
@@ -165,7 +165,7 @@ Public Class MainForm
         subTotal = 0
         For Each pair In orderDataDictionary
             subTotal += pair.Value * getFoodPrice(pair.Key)
-            summaryLB.Rows.Add(customerId, pair.Value, pair.Key)
+            summaryLB.Rows.Add(customerId, pair.Value, getFoodName(pair.Key))
         Next
 
         tax = subTotal * Tax_Rate
@@ -179,10 +179,10 @@ Public Class MainForm
         totalLB.ClearSelection()
     End Sub
 
-    Private Function getFoodPrice(ByVal name)
-        Dim sqlCommand As SqlCommand = New SqlCommand("SELECT * FROM Food WHERE Name = @name", connection)
-        sqlCommand.Parameters.Add("@name", SqlDbType.VarChar)
-        sqlCommand.Parameters("@name").Value = name
+    Private Function getFoodPrice(ByVal id)
+        Dim sqlCommand As SqlCommand = New SqlCommand("SELECT * FROM Food WHERE ID = @id", connection)
+        sqlCommand.Parameters.Add("@id", SqlDbType.Int)
+        sqlCommand.Parameters("@id").Value = id
         dataAdaptor.SelectCommand = sqlCommand
 
         ' retrieve query feedback
@@ -193,10 +193,10 @@ Public Class MainForm
         Return dataTable.Rows(0)("Price")
     End Function
 
-    Private Function getFoodID(ByVal name)
-        Dim sqlCommand As SqlCommand = New SqlCommand("SELECT * FROM Food WHERE Name = @name", connection)
-        sqlCommand.Parameters.Add("@name", SqlDbType.VarChar)
-        sqlCommand.Parameters("@name").Value = name
+    Private Function getFoodName(ByVal id)
+        Dim sqlCommand As SqlCommand = New SqlCommand("SELECT * FROM Food WHERE ID = @id", connection)
+        sqlCommand.Parameters.Add("@id", SqlDbType.Int)
+        sqlCommand.Parameters("@id").Value = id
         dataAdaptor.SelectCommand = sqlCommand
 
         ' retrieve query feedback
@@ -204,7 +204,7 @@ Public Class MainForm
         Dim dataTable As New DataTable
         dataAdaptor.Fill(dataTable)
 
-        Return dataTable.Rows(0)("ID")
+        Return dataTable.Rows(0)("Name")
     End Function
 
 
@@ -215,8 +215,7 @@ Public Class MainForm
 
         ' update transaction order table
         For Each pair In orderDataDictionary
-            Dim foodID As Integer = getFoodID(pair.Key)
-            insertTransactionOrder(transID, foodID, pair.Value)
+            insertTransactionOrder(transID, pair.Key, pair.Value)
         Next
 
         ' update transaction table in UI
@@ -291,7 +290,7 @@ Public Class MainForm
     End Sub
 
     Private Sub InitializeVariables()
-        orderDataDictionary = New Dictionary(Of String, Integer)
+        orderDataDictionary = New Dictionary(Of Integer, Integer)
         summaryLB.Rows.Clear()
         totalLB.Rows.Clear()
         subTotal = 0
@@ -331,8 +330,6 @@ Public Class MainForm
         totalLB.ColumnHeadersVisible = False
         totalLB.RowHeadersVisible = False
         totalLB.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-        totalLB.Columns(0).Name = "PriceName"
-        totalLB.Columns(1).Name = "PriceValue"
 
         transactionOrderTable.ColumnCount = 3
         transactionOrderTable.ColumnHeadersVisible = True
