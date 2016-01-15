@@ -1,13 +1,13 @@
 ﻿Imports System.Data.SqlClient
 
-Public Class Form1
+Public Class LoginForm
     Private userID As Integer
 
     Public Function getUserID()
         Return userID
     End Function
 
-    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles loginBTN.Click
+    Private Sub loginBTN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles loginBTN.Click
         ' setup connection to DB
         Dim connectPath As String = Application.StartupPath.ToString() + "\i-meal.mdf"
         Dim connectString As String = "Data Source=.\SQLEXPRESS;AttachDbFilename=" + connectPath + ";Integrated Security=True;User Instance=True"
@@ -51,5 +51,9 @@ Public Class Form1
 
     Private Sub cancelBTN_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cancelBTN.Click
         Me.Close()
+    End Sub
+
+    Private Sub LoginForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        AcceptButton = loginBTN
     End Sub
 End Class

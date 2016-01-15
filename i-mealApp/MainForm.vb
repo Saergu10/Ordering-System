@@ -1,5 +1,7 @@
 ﻿Imports System.Data.SqlClient
 Imports WhatsAppApi
+Imports WhatsAppApi.Helper
+Imports System.Threading
 
 Public Class MainForm
     ' WhatsApp variables
@@ -303,6 +305,11 @@ Public Class MainForm
     End Sub
 
 
+    ' show DB
+    Private Sub ManageButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ManageButton.Click
+        TransactionForm.Show()
+    End Sub
+
     ' on load
     Private Sub MainForm_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim connectPath As String = Application.StartupPath.ToString() + "\i-meal.mdf"
@@ -348,10 +355,10 @@ Public Class MainForm
         DisplayFoodCategory(1)
 
         ' retrieve userID from login page
-        customerId = Form1.getUserID
+        customerId = LoginForm.getUserID
 
         ' connect to Whatsapp
-        connectWhatsApp()
+        ' connectWhatsApp()
     End Sub
 
     Private Sub connectWhatsApp()
@@ -359,14 +366,23 @@ Public Class MainForm
         AddHandler wa.OnConnectSuccess, Sub()
                                             AddHandler wa.OnLoginSuccess, Sub(phone As String, data As Byte())
                                                                               MsgBox("whatsapp login succeed")
+                                                                              wa.SendMessage("6586267764", "Hello XD")
+                                                                              While wa IsNot Nothing
+                                                                                  wa.PollMessages()
+                                                                                  Thread.Sleep(200)
+                                                                                  Continue While
+                                                                              End While
                                                                           End Sub
                                             AddHandler wa.OnLoginFailed, Sub(data As String)
-                                                                             MsgBox("whatsapp login fail")
+                                                                             MsgBox("whatsapp login fail: " + data)
                                                                          End Sub
+                                            AddHandler wa.OnGetMessage, Sub(node As ProtocolTreeNode, from As String, id As String, name As String, message As String, receipt_sent As Boolean)
+                                                                            MsgBox(message)
+                                                                        End Sub
                                             wa.Login(Nothing)
                                         End Sub
         AddHandler wa.OnConnectFailed, Sub(ex As Exception)
-                                           MsgBox("connection fail")
+                                           MsgBox("connection fail: " + ex.ToString)
                                        End Sub
         wa.Connect()
     End Sub

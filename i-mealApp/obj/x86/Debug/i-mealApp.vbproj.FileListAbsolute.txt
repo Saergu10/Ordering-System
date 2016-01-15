@@ -44,3 +44,19 @@ C:\Users\think\Desktop\i-mealApp\i-mealApp\obj\x86\Debug\i_mealApp.MainForm.reso
 C:\Users\think\Desktop\i-mealApp\i-mealApp\obj\x86\Debug\i_mealApp.Resources.resources
 C:\Users\think\Desktop\i-mealApp\i-mealApp\obj\x86\Debug\i-mealApp.vbproj.GenerateResource.Cache
 C:\Users\think\Desktop\i-mealApp\i-mealApp\bin\Debug\WhatsAppApi.dll
+C:\Users\think\Desktop\VB App\i-mealApp\bin\Debug\i-mealApp.exe.config
+C:\Users\think\Desktop\VB App\i-mealApp\obj\x86\Debug\i-mealApp.exe
+C:\Users\think\Desktop\VB App\i-mealApp\obj\x86\Debug\i-mealApp.xml
+C:\Users\think\Desktop\VB App\i-mealApp\obj\x86\Debug\i-mealApp.pdb
+C:\Users\think\Desktop\VB App\i-mealApp\bin\Debug\i-meal.mdf
+C:\Users\think\Desktop\VB App\i-mealApp\bin\Debug\i-meal_log.ldf
+C:\Users\think\Desktop\VB App\i-mealApp\bin\Debug\i-mealApp.exe
+C:\Users\think\Desktop\VB App\i-mealApp\bin\Debug\i-mealApp.pdb
+C:\Users\think\Desktop\VB App\i-mealApp\bin\Debug\i-mealApp.xml
+C:\Users\think\Desktop\VB App\i-mealApp\bin\Debug\WhatsAppApi.dll
+C:\Users\think\Desktop\VB App\i-mealApp\obj\x86\Debug\i-mealApp.vbprojResolveAssemblyReference.cache
+C:\Users\think\Desktop\VB App\i-mealApp\obj\x86\Debug\i_mealApp.MainForm.resources
+C:\Users\think\Desktop\VB App\i-mealApp\obj\x86\Debug\i_mealApp.Resources.resources
+C:\Users\think\Desktop\VB App\i-mealApp\obj\x86\Debug\i-mealApp.vbproj.GenerateResource.Cache
+C:\Users\think\Desktop\VB App\i-mealApp\obj\x86\Debug\i_mealApp.TransactionForm.resources
+C:\Users\think\Desktop\VB App\i-mealApp\obj\x86\Debug\i_mealApp.LoginForm.resources

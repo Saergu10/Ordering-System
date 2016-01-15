@@ -65,6 +65,7 @@ Partial Class MainForm
         Me.summaryLB = New System.Windows.Forms.DataGridView()
         Me.totalLB = New System.Windows.Forms.DataGridView()
         Me.transactionOrderTable = New System.Windows.Forms.DataGridView()
+        Me.ManageButton = New System.Windows.Forms.Button()
         CType(Me.mealPic, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelMenu.SuspendLayout()
@@ -361,11 +362,18 @@ Partial Class MainForm
         Me.transactionOrderTable.ReadOnly = True
         Me.transactionOrderTable.RowTemplate.Height = 23
         '
+        'ManageButton
+        '
+        resources.ApplyResources(Me.ManageButton, "ManageButton")
+        Me.ManageButton.Name = "ManageButton"
+        Me.ManageButton.UseVisualStyleBackColor = True
+        '
         'MainForm
         '
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.PowderBlue
+        Me.Controls.Add(Me.ManageButton)
         Me.Controls.Add(Me.transactionOrderTable)
         Me.Controls.Add(Me.totalLB)
         Me.Controls.Add(Me.summaryLB)
@@ -449,4 +457,5 @@ Partial Class MainForm
     Friend WithEvents RemoveButton2 As System.Windows.Forms.Button
     Friend WithEvents AddButton2 As System.Windows.Forms.Button
     Friend WithEvents transactionOrderTable As System.Windows.Forms.DataGridView
+    Friend WithEvents ManageButton As System.Windows.Forms.Button
 End Class

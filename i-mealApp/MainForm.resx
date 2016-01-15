@@ -147,7 +147,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mealLabel.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>18</value>
   </data>
   <data name="mealPic.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2464,7 +2464,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;mealPic.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>17</value>
   </data>
   <data name="evmBtn.Location" type="System.Drawing.Point, System.Drawing">
     <value>34, 92</value>
@@ -2488,7 +2488,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;evmBtn.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>16</value>
   </data>
   <data name="vmdBtn.Location" type="System.Drawing.Point, System.Drawing">
     <value>34, 136</value>
@@ -2512,7 +2512,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;vmdBtn.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="hmBtn.Location" type="System.Drawing.Point, System.Drawing">
     <value>34, 177</value>
@@ -2536,7 +2536,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;hmBtn.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="Label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2566,7 +2566,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;Label1.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="PictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -6125,7 +6125,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;PictureBox1.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="burgerBtn.Location" type="System.Drawing.Point, System.Drawing">
     <value>34, 304</value>
@@ -6149,7 +6149,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;burgerBtn.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="ffnBtn.Location" type="System.Drawing.Point, System.Drawing">
     <value>34, 344</value>
@@ -6173,7 +6173,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ffnBtn.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="saladBtn.Location" type="System.Drawing.Point, System.Drawing">
     <value>34, 383</value>
@@ -6197,7 +6197,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;saladBtn.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="beverageBtn.Location" type="System.Drawing.Point, System.Drawing">
     <value>34, 422</value>
@@ -6221,7 +6221,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;beverageBtn.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="DessertsBtn.Location" type="System.Drawing.Point, System.Drawing">
     <value>34, 461</value>
@@ -6245,10 +6245,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;DessertsBtn.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="orderBtn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>641, 461</value>
+    <value>587, 461</value>
   </data>
   <data name="orderBtn.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 30</value>
@@ -6269,10 +6269,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;orderBtn.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="clearBtn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>783, 461</value>
+    <value>709, 461</value>
   </data>
   <data name="clearBtn.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 30</value>
@@ -6293,7 +6293,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;clearBtn.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="&gt;&gt;Panel5.Name" xml:space="preserve">
     <value>Panel5</value>
@@ -6362,7 +6362,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;PanelMenu.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="&gt;&gt;RemoveButton4.Name" xml:space="preserve">
     <value>RemoveButton4</value>
@@ -7238,7 +7238,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;summaryLB.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="totalLB.Location" type="System.Drawing.Point, System.Drawing">
     <value>587, 359</value>
@@ -7259,7 +7259,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;totalLB.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="transactionOrderTable.Location" type="System.Drawing.Point, System.Drawing">
     <value>171, 357</value>
@@ -7280,6 +7280,30 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;transactionOrderTable.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="ManageButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>830, 461</value>
+  </data>
+  <data name="ManageButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 30</value>
+  </data>
+  <data name="ManageButton.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="ManageButton.Text" xml:space="preserve">
+    <value>Manage</value>
+  </data>
+  <data name="&gt;&gt;ManageButton.Name" xml:space="preserve">
+    <value>ManageButton</value>
+  </data>
+  <data name="&gt;&gt;ManageButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ManageButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ManageButton.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
