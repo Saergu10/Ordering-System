@@ -43,3 +43,4 @@ C:\Users\think\Desktop\i-mealApp\i-mealApp\obj\x86\Debug\i_mealApp.Form1.resourc
 C:\Users\think\Desktop\i-mealApp\i-mealApp\obj\x86\Debug\i_mealApp.MainForm.resources
 C:\Users\think\Desktop\i-mealApp\i-mealApp\obj\x86\Debug\i_mealApp.Resources.resources
 C:\Users\think\Desktop\i-mealApp\i-mealApp\obj\x86\Debug\i-mealApp.vbproj.GenerateResource.Cache
+C:\Users\think\Desktop\i-mealApp\i-mealApp\bin\Debug\WhatsAppApi.dll

@@ -1,6 +1,10 @@
 ﻿Imports System.Data.SqlClient
+Imports WhatsAppApi
 
 Public Class MainForm
+    ' WhatsApp variables
+    Private wa As WhatsApp
+
     ' DB variables
     Dim connection As SqlConnection
     Dim sqlCommand As SqlCommand
@@ -171,9 +175,9 @@ Public Class MainForm
         tax = subTotal * Tax_Rate
         total = subTotal + tax
         totalLB.Rows.Clear()
-        totalLB.Rows.Add("SubTotal: ", subTotal)
-        totalLB.Rows.Add("GST: ", tax)
-        totalLB.Rows.Add("Total: ", total)
+        totalLB.Rows.Add("SubTotal: ", Format(subTotal, "0.00"))
+        totalLB.Rows.Add("GST: ", Format(tax, "0.00"))
+        totalLB.Rows.Add("Total: ", Format(total, "0.00"))
 
         summaryLB.ClearSelection()
         totalLB.ClearSelection()
@@ -280,7 +284,7 @@ Public Class MainForm
 
         For index As Integer = 1 To dataTable.Rows.Count
             Dim transactionInfo = dataTable.Rows(index - 1)
-            transactionOrderTable.Rows.Add(transactionInfo("ID"), transactionInfo("User_Id"), transactionInfo("Price"))
+            transactionOrderTable.Rows.Add(transactionInfo("ID"), transactionInfo("User_Id"), Format(transactionInfo("Price"), "0.00"))
         Next
     End Sub
 
@@ -345,5 +349,25 @@ Public Class MainForm
 
         ' retrieve userID from login page
         customerId = Form1.getUserID
+
+        ' connect to Whatsapp
+        connectWhatsApp()
+    End Sub
+
+    Private Sub connectWhatsApp()
+        wa = New WhatsApp("6597791507", "tuk5qGSCCX4kgeQ9Yht8RppiaRQ=", "User", True, False)
+        AddHandler wa.OnConnectSuccess, Sub()
+                                            AddHandler wa.OnLoginSuccess, Sub(phone As String, data As Byte())
+                                                                              MsgBox("whatsapp login succeed")
+                                                                          End Sub
+                                            AddHandler wa.OnLoginFailed, Sub(data As String)
+                                                                             MsgBox("whatsapp login fail")
+                                                                         End Sub
+                                            wa.Login(Nothing)
+                                        End Sub
+        AddHandler wa.OnConnectFailed, Sub(ex As Exception)
+                                           MsgBox("connection fail")
+                                       End Sub
+        wa.Connect()
     End Sub
 End Class
