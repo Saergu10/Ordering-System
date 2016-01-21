@@ -41,11 +41,11 @@ Public Class MainForm
     End Sub
 
     Private Sub burgerBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles burgerBtn.Click
-        DisplayFoodCategory(4)
+        DisplayFoodCategory(5)
     End Sub
 
     Private Sub ffnBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ffnBtn.Click
-        DisplayFoodCategory(5)
+        DisplayFoodCategory(7)
     End Sub
 
     Private Sub saladBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles saladBtn.Click
@@ -53,7 +53,7 @@ Public Class MainForm
     End Sub
 
     Private Sub beverageBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles beverageBtn.Click
-        DisplayFoodCategory(7)
+        DisplayFoodCategory(4)
     End Sub
 
     Private Sub DessertsBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DessertsBtn.Click
