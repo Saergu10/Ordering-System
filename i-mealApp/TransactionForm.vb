@@ -16,7 +16,6 @@ Public Class TransactionForm
         Catch ex As Exception
             Print("connection error: " + ex.ToString)
         End Try
-
         TransactionTable.ColumnCount = 6
         TransactionTable.ColumnHeadersVisible = True
         TransactionTable.RowHeadersVisible = False
@@ -44,6 +43,8 @@ Public Class TransactionForm
         SummaryTable.Columns(1).Name = "Price"
 
         displayTransactionTable()
+
+        TransactionTable.ClearSelection()
     End Sub
 
     Private Sub displayTransactionTable()
@@ -67,6 +68,9 @@ Public Class TransactionForm
         Dim index = TransactionTable.CurrentRow.Index
         Dim selectedTransactionId = TransactionTable.Item(0, index).Value
         displaySelectedTransactionOder(selectedTransactionId)
+
+        TransactionOrderTable.ClearSelection()
+        SummaryTable.ClearSelection()
     End Sub
 
     Private Sub displaySelectedTransactionOder(ByVal transactionId As Integer)
