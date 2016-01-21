@@ -24,8 +24,10 @@ Partial Class TransactionForm
     Private Sub InitializeComponent()
         Me.TransactionTable = New System.Windows.Forms.DataGridView()
         Me.TransactionOrderTable = New System.Windows.Forms.DataGridView()
+        Me.SummaryTable = New System.Windows.Forms.DataGridView()
         CType(Me.TransactionTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TransactionOrderTable, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SummaryTable, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TransactionTable
@@ -51,23 +53,40 @@ Partial Class TransactionForm
         Me.TransactionOrderTable.Location = New System.Drawing.Point(488, 12)
         Me.TransactionOrderTable.Name = "TransactionOrderTable"
         Me.TransactionOrderTable.RowTemplate.Height = 23
-        Me.TransactionOrderTable.Size = New System.Drawing.Size(377, 420)
+        Me.TransactionOrderTable.Size = New System.Drawing.Size(377, 288)
         Me.TransactionOrderTable.TabIndex = 1
+        '
+        'SummaryTable
+        '
+        Me.SummaryTable.AllowUserToAddRows = False
+        Me.SummaryTable.AllowUserToDeleteRows = False
+        Me.SummaryTable.BackgroundColor = System.Drawing.SystemColors.Window
+        Me.SummaryTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.SummaryTable.GridColor = System.Drawing.SystemColors.Window
+        Me.SummaryTable.Location = New System.Drawing.Point(488, 295)
+        Me.SummaryTable.Name = "SummaryTable"
+        Me.SummaryTable.ReadOnly = True
+        Me.SummaryTable.RowTemplate.Height = 23
+        Me.SummaryTable.Size = New System.Drawing.Size(377, 63)
+        Me.SummaryTable.TabIndex = 2
         '
         'TransactionForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(877, 444)
+        Me.Controls.Add(Me.SummaryTable)
         Me.Controls.Add(Me.TransactionOrderTable)
         Me.Controls.Add(Me.TransactionTable)
         Me.Name = "TransactionForm"
         Me.Text = "Transaction"
         CType(Me.TransactionTable, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TransactionOrderTable, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SummaryTable, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents TransactionTable As System.Windows.Forms.DataGridView
     Friend WithEvents TransactionOrderTable As System.Windows.Forms.DataGridView
+    Friend WithEvents SummaryTable As System.Windows.Forms.DataGridView
 End Class

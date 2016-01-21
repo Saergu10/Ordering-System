@@ -64,7 +64,7 @@ Partial Class MainForm
         Me.lblItem1 = New System.Windows.Forms.Label()
         Me.summaryLB = New System.Windows.Forms.DataGridView()
         Me.totalLB = New System.Windows.Forms.DataGridView()
-        Me.transactionOrderTable = New System.Windows.Forms.DataGridView()
+        Me.appOrderTable = New System.Windows.Forms.DataGridView()
         Me.ManageButton = New System.Windows.Forms.Button()
         CType(Me.mealPic, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,7 +79,7 @@ Partial Class MainForm
         CType(Me.picItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.summaryLB, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.totalLB, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.transactionOrderTable, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.appOrderTable, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'mealLabel
@@ -350,17 +350,17 @@ Partial Class MainForm
         Me.totalLB.Name = "totalLB"
         Me.totalLB.RowTemplate.Height = 23
         '
-        'transactionOrderTable
+        'appOrderTable
         '
-        Me.transactionOrderTable.AllowUserToAddRows = False
-        Me.transactionOrderTable.AllowUserToDeleteRows = False
-        Me.transactionOrderTable.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.transactionOrderTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.transactionOrderTable.GridColor = System.Drawing.SystemColors.ButtonHighlight
-        resources.ApplyResources(Me.transactionOrderTable, "transactionOrderTable")
-        Me.transactionOrderTable.Name = "transactionOrderTable"
-        Me.transactionOrderTable.ReadOnly = True
-        Me.transactionOrderTable.RowTemplate.Height = 23
+        Me.appOrderTable.AllowUserToAddRows = False
+        Me.appOrderTable.AllowUserToDeleteRows = False
+        Me.appOrderTable.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.appOrderTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.appOrderTable.GridColor = System.Drawing.SystemColors.ButtonHighlight
+        resources.ApplyResources(Me.appOrderTable, "appOrderTable")
+        Me.appOrderTable.Name = "appOrderTable"
+        Me.appOrderTable.ReadOnly = True
+        Me.appOrderTable.RowTemplate.Height = 23
         '
         'ManageButton
         '
@@ -374,7 +374,7 @@ Partial Class MainForm
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.PowderBlue
         Me.Controls.Add(Me.ManageButton)
-        Me.Controls.Add(Me.transactionOrderTable)
+        Me.Controls.Add(Me.appOrderTable)
         Me.Controls.Add(Me.totalLB)
         Me.Controls.Add(Me.summaryLB)
         Me.Controls.Add(Me.PanelMenu)
@@ -410,7 +410,7 @@ Partial Class MainForm
         CType(Me.picItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.summaryLB, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.totalLB, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.transactionOrderTable, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.appOrderTable, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -456,6 +456,6 @@ Partial Class MainForm
     Friend WithEvents AddButton3 As System.Windows.Forms.Button
     Friend WithEvents RemoveButton2 As System.Windows.Forms.Button
     Friend WithEvents AddButton2 As System.Windows.Forms.Button
-    Friend WithEvents transactionOrderTable As System.Windows.Forms.DataGridView
+    Friend WithEvents appOrderTable As System.Windows.Forms.DataGridView
     Friend WithEvents ManageButton As System.Windows.Forms.Button
 End Class

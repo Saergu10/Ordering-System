@@ -224,9 +224,6 @@ Public Class MainForm
             insertTransactionOrder(transID, pair.Key, pair.Value)
         Next
 
-        ' update transaction table in UI
-        updateTransactionTable()
-
         InitializeVariables()
     End Sub
 
@@ -272,22 +269,6 @@ Public Class MainForm
         sqlCommand.Parameters("@qty").Value = qty
 
         Dim rowsAffected As Integer = sqlCommand.ExecuteNonQuery()
-    End Sub
-
-    Private Sub updateTransactionTable()
-        transactionOrderTable.Rows.Clear()
-        Dim sqlCommand As SqlCommand = New SqlCommand("SELECT * FROM [Transaction]", connection)
-        dataAdaptor.SelectCommand = sqlCommand
-
-        ' retrieve query feedback
-        Dim cmdBuilder As New SqlCommandBuilder(dataAdaptor)
-        Dim dataTable As New DataTable
-        dataAdaptor.Fill(dataTable)
-
-        For index As Integer = 1 To dataTable.Rows.Count
-            Dim transactionInfo = dataTable.Rows(index - 1)
-            transactionOrderTable.Rows.Add(transactionInfo("ID"), transactionInfo("User_Id"), Format(transactionInfo("Price"), "0.00"))
-        Next
     End Sub
 
 
@@ -342,13 +323,14 @@ Public Class MainForm
         totalLB.RowHeadersVisible = False
         totalLB.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
 
-        transactionOrderTable.ColumnCount = 3
-        transactionOrderTable.ColumnHeadersVisible = True
-        transactionOrderTable.RowHeadersVisible = False
-        transactionOrderTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-        transactionOrderTable.Columns(0).Name = "Transaction ID"
-        transactionOrderTable.Columns(1).Name = "User ID"
-        transactionOrderTable.Columns(2).Name = "Price"
+        appOrderTable.ColumnCount = 2
+        appOrderTable.ColumnHeadersVisible = True
+        appOrderTable.RowHeadersVisible = False
+        appOrderTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        appOrderTable.Columns(0).Name = "Sender Contact"
+        appOrderTable.Columns(0).FillWeight = 85
+        appOrderTable.Columns(1).Name = "Order"
+        appOrderTable.Columns(1).FillWeight = 200
 
         InitializeVariables()
 
