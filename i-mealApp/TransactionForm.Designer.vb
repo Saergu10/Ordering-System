@@ -47,9 +47,12 @@ Partial Class TransactionForm
         '
         Me.TransactionOrderTable.AllowUserToAddRows = False
         Me.TransactionOrderTable.AllowUserToDeleteRows = False
+        Me.TransactionOrderTable.AllowUserToResizeColumns = False
+        Me.TransactionOrderTable.AllowUserToResizeRows = False
         Me.TransactionOrderTable.BackgroundColor = System.Drawing.SystemColors.Window
         Me.TransactionOrderTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.TransactionOrderTable.GridColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.TransactionOrderTable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.TransactionOrderTable.GridColor = System.Drawing.SystemColors.ActiveBorder
         Me.TransactionOrderTable.Location = New System.Drawing.Point(488, 12)
         Me.TransactionOrderTable.Name = "TransactionOrderTable"
         Me.TransactionOrderTable.RowTemplate.Height = 23
@@ -60,14 +63,17 @@ Partial Class TransactionForm
         '
         Me.SummaryTable.AllowUserToAddRows = False
         Me.SummaryTable.AllowUserToDeleteRows = False
+        Me.SummaryTable.AllowUserToResizeColumns = False
+        Me.SummaryTable.AllowUserToResizeRows = False
         Me.SummaryTable.BackgroundColor = System.Drawing.SystemColors.Window
         Me.SummaryTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.SummaryTable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.SummaryTable.GridColor = System.Drawing.SystemColors.Window
         Me.SummaryTable.Location = New System.Drawing.Point(488, 295)
         Me.SummaryTable.Name = "SummaryTable"
         Me.SummaryTable.ReadOnly = True
         Me.SummaryTable.RowTemplate.Height = 23
-        Me.SummaryTable.Size = New System.Drawing.Size(377, 63)
+        Me.SummaryTable.Size = New System.Drawing.Size(377, 84)
         Me.SummaryTable.TabIndex = 2
         '
         'TransactionForm

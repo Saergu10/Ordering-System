@@ -332,7 +332,8 @@ Partial Class MainForm
         Me.summaryLB.AllowUserToDeleteRows = False
         Me.summaryLB.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight
         Me.summaryLB.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.summaryLB.GridColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.summaryLB.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.summaryLB.GridColor = System.Drawing.SystemColors.ActiveBorder
         resources.ApplyResources(Me.summaryLB, "summaryLB")
         Me.summaryLB.Name = "summaryLB"
         Me.summaryLB.RowTemplate.Height = 23
@@ -345,6 +346,7 @@ Partial Class MainForm
         Me.totalLB.AllowUserToResizeRows = False
         Me.totalLB.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight
         Me.totalLB.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.totalLB.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.totalLB.GridColor = System.Drawing.SystemColors.ButtonHighlight
         resources.ApplyResources(Me.totalLB, "totalLB")
         Me.totalLB.Name = "totalLB"
@@ -356,6 +358,7 @@ Partial Class MainForm
         Me.appOrderTable.AllowUserToDeleteRows = False
         Me.appOrderTable.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight
         Me.appOrderTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.appOrderTable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.appOrderTable.GridColor = System.Drawing.SystemColors.ButtonHighlight
         resources.ApplyResources(Me.appOrderTable, "appOrderTable")
         Me.appOrderTable.Name = "appOrderTable"

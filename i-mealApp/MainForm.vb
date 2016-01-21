@@ -216,13 +216,22 @@ Public Class MainForm
 
     ' save order info to DB
     Private Sub orderBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles orderBtn.Click
+        Dim isInsertSuccessful As Boolean = False
         Dim transID As Integer = generateTransactionID()
-        insertTransaction(transID, customerId, total)
+        isInsertSuccessful = insertTransaction(transID, customerId, total)
 
         ' update transaction order table
         For Each pair In orderDataDictionary
-            insertTransactionOrder(transID, pair.Key, pair.Value)
+            If (Not insertTransactionOrder(transID, pair.Key, pair.Value)) Then
+                isInsertSuccessful = False
+            End If
         Next
+
+        If isInsertSuccessful Then
+            MsgBox("Order Successful!")
+        Else
+            MsgBox("Order Failed!")
+        End If
 
         InitializeVariables()
     End Sub
@@ -245,7 +254,7 @@ Public Class MainForm
         End If
     End Function
 
-    Private Sub insertTransaction(ByVal transID As Integer, ByVal userID As Integer, ByVal price As Decimal)
+    Private Function insertTransaction(ByVal transID As Integer, ByVal userID As Integer, ByVal price As Decimal)
         Dim sqlCommand As SqlCommand = New SqlCommand("INSERT INTO [Transaction](ID, User_Id, price) VALUES (@transactionId, @userId, @price)",
                                                       connection)
         sqlCommand.Parameters.Add("@transactionId", SqlDbType.Int)
@@ -256,9 +265,14 @@ Public Class MainForm
         sqlCommand.Parameters("@price").Value = price
 
         Dim rowsAffected As Integer = sqlCommand.ExecuteNonQuery()
-    End Sub
+        If (rowsAffected = 1) Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
 
-    Private Sub insertTransactionOrder(ByVal transID As Integer, ByVal foodID As Integer, ByVal qty As Integer)
+    Private Function insertTransactionOrder(ByVal transID As Integer, ByVal foodID As Integer, ByVal qty As Integer)
         Dim sqlCommand As SqlCommand = New SqlCommand("INSERT INTO TransactionOrder(Transaction_Id, Food_Id, Qty) VALUES (@transactionId, @foodId, @qty)",
                                                       connection)
         sqlCommand.Parameters.Add("@transactionId", SqlDbType.Int)
@@ -269,7 +283,12 @@ Public Class MainForm
         sqlCommand.Parameters("@qty").Value = qty
 
         Dim rowsAffected As Integer = sqlCommand.ExecuteNonQuery()
-    End Sub
+        If (rowsAffected = 1) Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
 
 
     Private Sub clearBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles clearBtn.Click
