@@ -346,7 +346,7 @@ Public Class MainForm
         appOrderTable.ColumnHeadersVisible = True
         appOrderTable.RowHeadersVisible = False
         appOrderTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-        appOrderTable.Columns(0).Name = "Sender Contact"
+        appOrderTable.Columns(0).Name = "Sender"
         appOrderTable.Columns(0).FillWeight = 85
         appOrderTable.Columns(1).Name = "Order"
         appOrderTable.Columns(1).FillWeight = 200
@@ -360,7 +360,15 @@ Public Class MainForm
 
         ' connect to Whatsapp
         ' connectWhatsApp()
-        processOrder("EVM # 1 * 2 + burger # 3 * 3")
+
+        ' for testing whatsapp order purpose
+        displayWhatsAppOrder("6598765432", "EVM # 1 * 2 + burger # 3 * 3")
+        displayWhatsAppOrder("6598765432", "Salad#1*8+ deSSert # 2*8 + drink # 2 * 4 + drink# 1*4")
+        displayWhatsAppOrder("6598765432", "VM # 1 * 1 + vm # 1 * 2 + vM # 1 * 3 + Vm # 1 * 4")
+        displayWhatsAppOrder("6598765432", "INVALID_food_name#2*2") ' expect error msg
+        displayWhatsAppOrder("6598765432", "SALAD#2*1") ' expect error msg
+        displayWhatsAppOrder("6598765432", "burger # 3") ' expect error msg
+        appOrderTable.ClearSelection()
     End Sub
 
     Private Sub connectWhatsApp()
@@ -379,7 +387,7 @@ Public Class MainForm
                                                                          End Sub
                                             AddHandler wa.OnGetMessage, Sub(node As ProtocolTreeNode, from As String, id As String, name As String, message As String, receipt_sent As Boolean)
                                                                             MsgBox(message)
-                                                                            processOrder(message)
+                                                                            displayWhatsAppOrder(id, message)
                                                                         End Sub
                                             wa.Login(Nothing)
                                         End Sub
@@ -387,6 +395,18 @@ Public Class MainForm
                                            MsgBox("connection fail: " + ex.ToString)
                                        End Sub
         wa.Connect()
+    End Sub
+
+    Private Sub displayWhatsAppOrder(ByVal id As String, ByVal message As String)
+        appOrderTable.Rows.Add(id, message)
+    End Sub
+
+    Private Sub appOrderTable_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles appOrderTable.CellClick
+        InitializeVariables()
+        appOrderTable.CurrentRow.Selected = True
+        Dim index = appOrderTable.CurrentRow.Index
+        Dim selectedMessage = appOrderTable.Item(1, index).Value
+        processOrder(selectedMessage)
     End Sub
 
     Private Sub processOrder(ByVal msg As String)
@@ -398,11 +418,68 @@ Public Class MainForm
             Dim order_info = orders(index).Trim.Split({"#", "*"}, StringSplitOptions.RemoveEmptyEntries)
 
             If order_info.Length <> 3 Then
-                MsgBox("an error has occured in WhatsApp Order: " + orders(index))
+                MsgBox("Invalid message syntax in WhatsApp Order: " + orders(index))
             Else
-                ' valid order message, retrieve food info from DB
+                ' valid order message, retrieve food_cate info from DB
+                Dim order_category_name = order_info(0)
+                Dim order_food_index = order_info(1)
+                Dim order_qty = order_info(2)
 
+                Dim food_cate_Id = getFoodCateId(order_category_name)
+
+                If (food_cate_Id = False) Then
+                    MsgBox("Invalid food category: " + order_category_name)
+                Else
+                    ' valid food_cate_id, retrieve food info from DB
+
+                    ' setup sql query
+                    sqlCommand = New SqlCommand("SELECT * FROM Food WHERE Food_Cate_id = @id", connection)
+                    sqlCommand.Parameters.Add("@id", SqlDbType.Int)
+                    sqlCommand.Parameters("@id").Value = food_cate_Id
+                    dataAdaptor.SelectCommand = sqlCommand
+
+                    ' retrieve query feedback
+                    Dim cmdBuilder As New SqlCommandBuilder(dataAdaptor)
+                    dataTable = New DataTable
+                    dataAdaptor.Fill(dataTable)
+
+                    If (dataTable.Rows.Count < order_food_index) Then
+                        MsgBox("Invalid food index: " + order_food_index + " for food category: " + order_category_name)
+                    Else
+                        ' update orderDataDictionary
+                        Dim foodId = dataTable.Rows(order_food_index - 1)("ID")
+                        Dim value As Integer
+                        If orderDataDictionary.TryGetValue(foodId, value) Then
+                            orderDataDictionary(foodId) = value + order_qty
+                        Else
+                            orderDataDictionary.Add(foodId, order_qty)
+                        End If
+                    End If
+                End If
             End If
         Next
+
+        updateSummaryTable()
     End Sub
+
+    Private Function getFoodCateId(ByVal name As String) As Object
+        ' setup sql query
+        sqlCommand = New SqlCommand("SELECT * FROM FoodCategory WHERE Name = @name", connection)
+        sqlCommand.Parameters.Add("@name", SqlDbType.VarChar)
+        sqlCommand.Parameters("@name").Value = name
+
+        dataAdaptor.SelectCommand = sqlCommand
+
+        ' retrieve query feedback
+        Dim cmdBuilder As New SqlCommandBuilder(dataAdaptor)
+        dataTable = New DataTable
+        dataAdaptor.Fill(dataTable)
+
+        If (dataTable.Rows.Count = 0) Then
+            Return False
+        Else
+            Return dataTable.Rows(0)("ID")
+        End If
+    End Function
+
 End Class
