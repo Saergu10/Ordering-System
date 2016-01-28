@@ -360,6 +360,7 @@ Public Class MainForm
 
         ' connect to Whatsapp
         ' connectWhatsApp()
+        processOrder("EVM # 1 * 2 + burger # 3 * 3")
     End Sub
 
     Private Sub connectWhatsApp()
@@ -367,7 +368,6 @@ Public Class MainForm
         AddHandler wa.OnConnectSuccess, Sub()
                                             AddHandler wa.OnLoginSuccess, Sub(phone As String, data As Byte())
                                                                               MsgBox("whatsapp login succeed")
-                                                                              wa.SendMessage("6586267764", "Hello XD")
                                                                               While wa IsNot Nothing
                                                                                   wa.PollMessages()
                                                                                   Thread.Sleep(200)
@@ -379,6 +379,7 @@ Public Class MainForm
                                                                          End Sub
                                             AddHandler wa.OnGetMessage, Sub(node As ProtocolTreeNode, from As String, id As String, name As String, message As String, receipt_sent As Boolean)
                                                                             MsgBox(message)
+                                                                            processOrder(message)
                                                                         End Sub
                                             wa.Login(Nothing)
                                         End Sub
@@ -386,5 +387,22 @@ Public Class MainForm
                                            MsgBox("connection fail: " + ex.ToString)
                                        End Sub
         wa.Connect()
+    End Sub
+
+    Private Sub processOrder(ByVal msg As String)
+        ' seperate message into orders
+        Dim orders = msg.Trim.ToLower.Split({"+"}, StringSplitOptions.RemoveEmptyEntries)
+        For index As Integer = 0 To (orders.Length - 1)
+            ' seperate order into 
+            ' category_name -> order_info(0), food index -> order_info(1), quantity -> order_info(2)
+            Dim order_info = orders(index).Trim.Split({"#", "*"}, StringSplitOptions.RemoveEmptyEntries)
+
+            If order_info.Length <> 3 Then
+                MsgBox("an error has occured in WhatsApp Order: " + orders(index))
+            Else
+                ' valid order message, retrieve food info from DB
+
+            End If
+        Next
     End Sub
 End Class
