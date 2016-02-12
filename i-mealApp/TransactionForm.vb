@@ -2,6 +2,8 @@
 
 Public Class TransactionForm
     Const Tax_Rate = 0.07
+    Dim selectedTransactionIndex = -1
+    Dim selectedTransactionId
 
     ' DB variables
     Dim connection As SqlConnection
@@ -43,12 +45,12 @@ Public Class TransactionForm
         SummaryTable.Columns(1).Name = "Price"
 
         displayTransactionTable()
-
-        TransactionTable.ClearSelection()
     End Sub
 
     Private Sub displayTransactionTable()
+        TransactionTable.Rows.Clear()
         TransactionOrderTable.Rows.Clear()
+        SummaryTable.Rows.Clear()
         Dim sqlCommand As SqlCommand = New SqlCommand("SELECT * FROM [Transaction]", connection)
         dataAdaptor.SelectCommand = sqlCommand
 
@@ -61,12 +63,14 @@ Public Class TransactionForm
             Dim transactionInfo = dataTable.Rows(index - 1)
             TransactionTable.Rows.Add(transactionInfo("ID"), transactionInfo("User_Id"), Format(transactionInfo("Price"), "0.00"))
         Next
+
+        TransactionTable.ClearSelection()
     End Sub
 
     Private Sub TransactionTable_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles TransactionTable.CellClick
         TransactionTable.CurrentRow.Selected = True
-        Dim index = TransactionTable.CurrentRow.Index
-        Dim selectedTransactionId = TransactionTable.Item(0, index).Value
+        selectedTransactionIndex = TransactionTable.CurrentRow.Index
+        selectedTransactionId = TransactionTable.Item(0, selectedTransactionIndex).Value
         displaySelectedTransactionOder(selectedTransactionId)
 
         TransactionOrderTable.ClearSelection()
@@ -126,4 +130,33 @@ Public Class TransactionForm
         SummaryTable.Rows.Add("Total: ", Format(total, "0.00"))
     End Sub
 
+    Private Sub Done_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Done.Click
+        Me.Close()
+    End Sub
+
+    Private Sub Delete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Delete.Click
+        If (selectedTransactionIndex >= 0) Then
+            Dim result As Integer = MessageBox.Show("Are you sure to delete this transaction?", "", MessageBoxButtons.YesNoCancel)
+            If result = DialogResult.Yes Then
+                ' delete current transaction form DB
+                Dim sqlCommand As SqlCommand = New SqlCommand("DELETE FROM TransactionOrder WHERE Transaction_Id = @id", connection)
+                sqlCommand.Parameters.Add("@id", SqlDbType.Int)
+                sqlCommand.Parameters("@id").Value = selectedTransactionId
+                sqlCommand.ExecuteNonQuery()
+
+                sqlCommand = New SqlCommand("DELETE FROM [Transaction] WHERE ID = @id", connection)
+                sqlCommand.Parameters.Add("@id", SqlDbType.Int)
+                sqlCommand.Parameters("@id").Value = selectedTransactionId
+                sqlCommand.ExecuteNonQuery()
+
+                ' reset transactionIndex value
+                selectedTransactionIndex = -1
+
+                ' update transaction table
+                displayTransactionTable()
+            End If
+        Else
+            MsgBox("You need to select a transaction to delete!")
+        End If
+    End Sub
 End Class

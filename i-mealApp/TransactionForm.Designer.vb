@@ -25,6 +25,8 @@ Partial Class TransactionForm
         Me.TransactionTable = New System.Windows.Forms.DataGridView()
         Me.TransactionOrderTable = New System.Windows.Forms.DataGridView()
         Me.SummaryTable = New System.Windows.Forms.DataGridView()
+        Me.Delete = New System.Windows.Forms.Button()
+        Me.Done = New System.Windows.Forms.Button()
         CType(Me.TransactionTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TransactionOrderTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SummaryTable, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -76,11 +78,31 @@ Partial Class TransactionForm
         Me.SummaryTable.Size = New System.Drawing.Size(377, 84)
         Me.SummaryTable.TabIndex = 2
         '
+        'Delete
+        '
+        Me.Delete.Location = New System.Drawing.Point(488, 395)
+        Me.Delete.Name = "Delete"
+        Me.Delete.Size = New System.Drawing.Size(136, 37)
+        Me.Delete.TabIndex = 3
+        Me.Delete.Text = "Delete"
+        Me.Delete.UseVisualStyleBackColor = True
+        '
+        'Done
+        '
+        Me.Done.Location = New System.Drawing.Point(729, 396)
+        Me.Done.Name = "Done"
+        Me.Done.Size = New System.Drawing.Size(136, 36)
+        Me.Done.TabIndex = 4
+        Me.Done.Text = "Done"
+        Me.Done.UseVisualStyleBackColor = True
+        '
         'TransactionForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(877, 444)
+        Me.Controls.Add(Me.Done)
+        Me.Controls.Add(Me.Delete)
         Me.Controls.Add(Me.SummaryTable)
         Me.Controls.Add(Me.TransactionOrderTable)
         Me.Controls.Add(Me.TransactionTable)
@@ -95,4 +117,6 @@ Partial Class TransactionForm
     Friend WithEvents TransactionTable As System.Windows.Forms.DataGridView
     Friend WithEvents TransactionOrderTable As System.Windows.Forms.DataGridView
     Friend WithEvents SummaryTable As System.Windows.Forms.DataGridView
+    Friend WithEvents Delete As System.Windows.Forms.Button
+    Friend WithEvents Done As System.Windows.Forms.Button
 End Class
