@@ -216,24 +216,28 @@ Public Class MainForm
 
     ' save order info to DB
     Private Sub orderBtn_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles orderBtn.Click
-        Dim isInsertSuccessful As Boolean = False
-        Dim transID As Integer = generateTransactionID()
-        isInsertSuccessful = insertTransaction(transID, customerId, total)
-
-        ' update transaction order table
-        For Each pair In orderDataDictionary
-            If (Not insertTransactionOrder(transID, pair.Key, pair.Value)) Then
-                isInsertSuccessful = False
-            End If
-        Next
-
-        If isInsertSuccessful Then
-            MsgBox("Order Successful!")
+        If (orderDataDictionary.Count = 0) Then
+            MsgBox("You must order something first!")
         Else
-            MsgBox("Order Failed!")
-        End If
+            Dim isInsertSuccessful As Boolean = False
+            Dim transID As Integer = generateTransactionID()
+            isInsertSuccessful = insertTransaction(transID, customerId, total)
 
-        InitializeVariables()
+            ' update transaction order table
+            For Each pair In orderDataDictionary
+                If (Not insertTransactionOrder(transID, pair.Key, pair.Value)) Then
+                    isInsertSuccessful = False
+                End If
+            Next
+
+            If isInsertSuccessful Then
+                MsgBox("Order Successful!")
+            Else
+                MsgBox("Order Failed!")
+            End If
+
+            InitializeVariables()
+        End If
     End Sub
 
     Private Function generateTransactionID()
