@@ -367,6 +367,7 @@ Public Class MainForm
         displayWhatsAppOrder("6598765432", "VM # 1 * 1 + vm # 1 * 2 + vM # 1 * 3 + Vm # 1 * 4")
         displayWhatsAppOrder("6598765432", "INVALID_food_name#2*2") ' expect error msg
         displayWhatsAppOrder("6598765432", "SALAD#2*1") ' expect error msg
+        displayWhatsAppOrder("6598765432", "drink#2*-1") ' expect error msg
         displayWhatsAppOrder("6598765432", "burger # 3") ' expect error msg
         appOrderTable.ClearSelection()
     End Sub
@@ -440,19 +441,23 @@ Public Class MainForm
 
                     ' retrieve query feedback
                     Dim cmdBuilder As New SqlCommandBuilder(dataAdaptor)
-                    dataTable = New DataTable
+                    Dim dataTable = New DataTable
                     dataAdaptor.Fill(dataTable)
 
                     If (dataTable.Rows.Count < order_food_index) Then
                         MsgBox("Invalid food index: " + order_food_index + " for food category: " + order_category_name)
                     Else
-                        ' update orderDataDictionary
-                        Dim foodId = dataTable.Rows(order_food_index - 1)("ID")
-                        Dim value As Integer
-                        If orderDataDictionary.TryGetValue(foodId, value) Then
-                            orderDataDictionary(foodId) = value + order_qty
+                        If order_qty <= 0 Then
+                            MsgBox("Food quantity must be larger than 0!")
                         Else
-                            orderDataDictionary.Add(foodId, order_qty)
+                            ' update orderDataDictionary
+                            Dim foodId = dataTable.Rows(order_food_index - 1)("ID")
+                            Dim value As Integer
+                            If orderDataDictionary.TryGetValue(foodId, value) Then
+                                orderDataDictionary(foodId) = value + order_qty
+                            Else
+                                orderDataDictionary.Add(foodId, order_qty)
+                            End If
                         End If
                     End If
                 End If
@@ -472,7 +477,7 @@ Public Class MainForm
 
         ' retrieve query feedback
         Dim cmdBuilder As New SqlCommandBuilder(dataAdaptor)
-        dataTable = New DataTable
+        Dim dataTable = New DataTable
         dataAdaptor.Fill(dataTable)
 
         If (dataTable.Rows.Count = 0) Then
