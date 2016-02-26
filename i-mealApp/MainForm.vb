@@ -366,18 +366,18 @@ Public Class MainForm
         ' connectWhatsApp()
 
         ' for testing whatsapp order purpose
-        displayWhatsAppOrder("6598765432", "EVM # 1 * 2 + burger # 3 * 3")
-        displayWhatsAppOrder("6598765432", "Salad#1*8+ deSSert # 2*8 + drink # 2 * 4 + drink# 1*4")
-        displayWhatsAppOrder("6598765432", "VM # 1 * 1 + vm # 1 * 2 + vM # 1 * 3 + Vm # 1 * 4")
-        displayWhatsAppOrder("6598765432", "INVALID_food_name#2*2") ' expect error msg
-        displayWhatsAppOrder("6598765432", "SALAD#2*1") ' expect error msg
-        displayWhatsAppOrder("6598765432", "drink#2*-1") ' expect error msg
-        displayWhatsAppOrder("6598765432", "burger # 3") ' expect error msg
+        displayWhatsAppOrder("phonenumber", "EVM # 1 * 2 + burger # 3 * 3")
+        displayWhatsAppOrder("phonenumber", "Salad#1*8+ deSSert # 2*8 + drink # 2 * 4 + drink# 1*4")
+        displayWhatsAppOrder("phonenumber", "VM # 1 * 1 + vm # 1 * 2 + vM # 1 * 3 + Vm # 1 * 4")
+        displayWhatsAppOrder("phonenumber", "INVALID_food_name#2*2") ' expect error msg
+        displayWhatsAppOrder("phonenumber", "SALAD#2*1") ' expect error msg
+        displayWhatsAppOrder("phonenumber", "drink#2*-1") ' expect error msg
+        displayWhatsAppOrder("phonenumber", "burger # 3") ' expect error msg
         appOrderTable.ClearSelection()
     End Sub
 
     Private Sub connectWhatsApp()
-        wa = New WhatsApp("6597791507", "tuk5qGSCCX4kgeQ9Yht8RppiaRQ=", "User", True, False)
+        wa = New WhatsApp("phonenumber", "password", "User", True, False)
         AddHandler wa.OnConnectSuccess, Sub()
                                             AddHandler wa.OnLoginSuccess, Sub(phone As String, data As Byte())
                                                                               MsgBox("whatsapp login succeed")
